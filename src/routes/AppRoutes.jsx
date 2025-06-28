@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import CondominiumInfo from "../pages/CondominiumInfo";
 import AddPropertyInfo from "../pages/AddPropertyInfo";
 import ChoosePlan from "../pages/ChoosePlan";
+import PageProgress from "../components/common/PageProgress";
 
 const AppRoutes = () => {
   const [hasPermission, setHasPermission] = useState(false);

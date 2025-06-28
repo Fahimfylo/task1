@@ -8,7 +8,7 @@ const CompanyOfficeForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   return (
-    <form className="border p-6 rounded-md shadow-sm bg-white mx-auto grid grid-cols-1 sm:grid-cols-4 gap-4">
+    <form className="border border-gray-300 p-6 rounded-lg bg-white mx-auto grid grid-cols-1 sm:grid-cols-4 gap-4">
       {/* Row 1 */}
       <div>
         <label className="block font-medium mb-1" htmlFor="companyName">

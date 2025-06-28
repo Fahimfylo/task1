@@ -1,9 +1,11 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import PageProgress from "../common/PageProgress"; // adjust path as needed
 
 const Footer = ({ hasPermission }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const routeOrder = [
     "/",
@@ -21,28 +23,44 @@ const Footer = ({ hasPermission }) => {
   };
 
   return (
-    <footer className="w-full flex justify-between max-w-[1440px] mx-auto border-t border-gray-300 mt-10 p-5">
-      <button
-        disabled={currentIndex === 0}
-        onClick={() => navigate(routeOrder[currentIndex - 1])}
-        className="px-6 py-2 rounded border border-gray-400 cursor-pointer hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        Back
-      </button>
+    <footer
+      className={`w-full flex flex-col gap-5 max-w-[1440px] mx-auto py-5 ${
+        isHome ? "" : ""
+      }`}
+      style={
+        isHome
+          ? {
+              boxShadow: "0 -6px 12px -6px rgba(0, 0, 0, 0.1)",
+            }
+          : {}
+      }
+    >
+      {/* 👇 Render PageProgress inside the footer as its top border */}
+      <PageProgress />
 
-      {!isLastPage && (
-        <button
-          onClick={handleNext}
-          disabled={!hasPermission}
-          className={`px-6 py-2 rounded text-white transition-colors ${
-            hasPermission
-              ? "bg-blue-500 hover:bg-blue-600 cursor-pointer"
-              : "bg-blue-200 cursor-not-allowed"
-          }`}
+      <div className="w-full mx-auto max-w-[1280px] flex justify-between">
+        <p
+          disabled={currentIndex === 0}
+          onClick={() => navigate(routeOrder[currentIndex - 1])}
+          className="py-2 underline font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Get Started
-        </button>
-      )}
+          Back
+        </p>
+
+        {!isLastPage && (
+          <button
+            onClick={handleNext}
+            disabled={!hasPermission}
+            className={`px-5 py-2 text-white rounded-[13px] transition-colors ${
+              hasPermission
+                ? "bg-blue-500 hover:bg-blue-600 cursor-pointer"
+                : "bg-blue-200 cursor-not-allowed"
+            }`}
+          >
+            {isHome ? "Get Started" : "Next"}
+          </button>
+        )}
+      </div>
     </footer>
   );
 };

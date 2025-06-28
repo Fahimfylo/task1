@@ -2,7 +2,7 @@ import React from "react";
 
 const RealtorVerification = () => {
   return (
-    <div className="w-full border border-gray-200 p-6 rounded-lg  bg-white mx-auto">
+    <div className="w-full border border-gray-300 p-6 rounded-lg  bg-white mx-auto">
       <h3 className="text-xl font-semibold mb-4">Realtor Verification</h3>
 
       <div className="space-y-4">
