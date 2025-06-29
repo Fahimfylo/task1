@@ -1,10 +1,22 @@
 import React, { useState } from "react";
 import { Plus, Upload } from "lucide-react";
 import { IoIosArrowDropdown } from "react-icons/io";
-import PropertyAddressPopup from "../components/popups/PropertyAddressPopup";
+import PropertyAddressPopup from "../components/Manageproperty/popups/PropertyAddressPopup";
+import LeasingInfoPopup from "../components/Manageproperty/popups/LeasingInfoPopup";
+import ChargesPopup from "../components/Manageproperty/popups/ChargesPopup";
+import RentPopup from "../components/Manageproperty/popups/RentPopup";
+import ApplicationPopup from "../components/Manageproperty/popups/ApplicationPopup";
+import AboutPropertyPopup from "../components/Manageproperty/popups/AboutPropertyPopup";
+import CommunityPopup from "../components/Manageproperty/popups/CommunitiesPopup";
 
 const CondoInformationForm = () => {
   const [showAddressPopup, setShowAddressPopup] = useState(false);
+  const [showLeasingPopup, setShowLeasingPopup] = useState(false);
+  const [showChargesPopup, setChargesPopup] = useState(false);
+  const [showRentPopup, setRentPopup] = useState(false);
+  const [showApplicationPopup, setApplicationPopup] = useState(false);
+  const [showAboutPropertyPopup, setAboutPropertyPopup] = useState(false);
+  const [showCommunityPopup, setCommunityPopup] = useState(false);
 
   const formFields = [
     { label: "Property address", note: "(Required)", key: "property_address" },
@@ -16,14 +28,14 @@ const CondoInformationForm = () => {
       label: "Nearest educational institution",
       note: "(Optional but recommended)",
     },
-    { label: "Rent frequency & payment reminder", note: "(Required)" },
+    { label: "Rent", note: "(Required)" },
     { label: "Nearest Stations", note: "(Optional but recommended)" },
-    { label: "Application agreements", note: "(Optional)" },
+    { label: "Application", note: "(Optional)" },
     { label: "Nearest landmark", note: "(Optional but recommended)" },
-    { label: "About the property", note: "(Optional)" },
+    { label: "Aboutproperty", note: "(Optional)" },
     { label: "Utilities provider", note: "(Optional but recommended)" },
     {
-      label: "Community amenity / features",
+      label: "Community",
       note: "(Optional but recommended)",
     },
   ];
@@ -31,6 +43,18 @@ const CondoInformationForm = () => {
   const handleAddClick = (label) => {
     if (label === "Property address") {
       setShowAddressPopup(true);
+    } else if (label === "Leasing info") {
+      setShowLeasingPopup(true);
+    } else if (label === "Charges") {
+      setChargesPopup(true);
+    } else if (label === "Rent") {
+      setRentPopup(true);
+    } else if (label === "Application") {
+      setApplicationPopup(true);
+    } else if (label === "Aboutproperty") {
+      setAboutPropertyPopup(true);
+    } else if (label === "Community") {
+      setCommunityPopup(true);
     }
   };
 
@@ -136,6 +160,27 @@ const CondoInformationForm = () => {
       <PropertyAddressPopup
         isOpen={showAddressPopup}
         onClose={() => setShowAddressPopup(false)}
+      />
+      <LeasingInfoPopup
+        isOpen={showLeasingPopup}
+        onClose={() => setShowLeasingPopup(false)}
+      />
+      <ChargesPopup
+        isOpen={showChargesPopup}
+        onClose={() => setChargesPopup(false)}
+      />
+      <RentPopup isOpen={showRentPopup} onClose={() => setRentPopup(false)} />
+      <ApplicationPopup
+        isOpen={showApplicationPopup}
+        onClose={() => setApplicationPopup(false)}
+      />
+      <AboutPropertyPopup
+        isOpen={showAboutPropertyPopup}
+        onClose={() => setAboutPropertyPopup(false)}
+      />
+      <CommunityPopup
+        isOpen={showCommunityPopup}
+        onClose={() => setCommunityPopup(false)}
       />
     </div>
   );

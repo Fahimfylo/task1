@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-
 import PropertyTypeCard from "../components/cards/PropertyTypeCard";
 import RoleCard from "../components/cards/RoleCard";
-import ProofOfOwnership from "../features/landlord/ProofOfOwnership"; // also fixed import casing
+import ProofOfOwnership from "../features/landlord/Proofofownership"; // also fixed import casing
 import RealtorVerification from "../features/landlord/RealtorVerification";
 import CompanyOfficeForm from "../features/landlord/CompanyOfficeForm";
-
-// import RealtorVerification from "../features/realtor/RealtorVerification";
-// import CompanyOfficeForm from "../features/company/CompanyOfficeForm";
 
 const propertyTypes = [
   { id: "single", title: "Single House Property" },

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { countries, states } from "../../utils/constants";
 import PhoneInputWithCountry from "../../components/common/PhoneInputWithCountry";
+import { SlArrowDown } from "react-icons/sl";
 
 const CompanyOfficeForm = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -60,19 +61,27 @@ const CompanyOfficeForm = () => {
         <label className="block font-medium mb-1" htmlFor="country">
           Country/Region
         </label>
-        <select
-          id="country"
-          value={selectedCountry}
-          onChange={(e) => setSelectedCountry(e.target.value)}
-          className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          <option value="">Select country</option>
-          {countries.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
+        <div className="relative">
+          <select
+            id="country"
+            value={selectedCountry}
+            onChange={(e) => setSelectedCountry(e.target.value)}
+            className="w-full border text-sm text-gray-700 border-gray-300 rounded px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none"
+          >
+            <option value="">Select country</option>
+            {countries.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+
+          {/* Custom dropdown icon */}
+          <SlArrowDown
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none"
+            size={16}
+          />
+        </div>
       </div>
 
       <div>
@@ -98,6 +107,7 @@ const CompanyOfficeForm = () => {
       </div>
 
       <div>
+        <p className="block text-sm font-semibold mb-2">Phone Number</p>
         <PhoneInputWithCountry value={phoneNumber} onChange={setPhoneNumber} />
       </div>
 
