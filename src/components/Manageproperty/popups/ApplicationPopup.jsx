@@ -28,9 +28,8 @@ const ApplicationAgreementPopup = ({ isOpen, onClose }) => {
       onSave={handleSave} 
     >
       <div className="flex flex-col justify-center w-[780px] h-[180px] px-6 py-6 space-y-4 overflow-hidden"> {/* Added h-[294px] and overflow-hidden */}
-        {/* Upload Agreement Section */}
         <div className="flex flex-col">
-          <label htmlFor="uploadAgreement" className="font-medium text-gray-800 text-sm mb-4">
+          <label htmlFor="uploadAgreement" className="font-medium text-gray-800 text-[15px] mb-4">
             Upload agreement
           </label>
           <div

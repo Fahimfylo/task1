@@ -21,7 +21,7 @@ const AboutPropertyPopup = ({ isOpen, onClose }) => {
           <textarea
             id="propertyMessage"
             placeholder="Type message here"
-            className="border text-sm border-gray-300 font-medium placeholder:text-gray-500 rounded-lg p-4 h-[164px] w-full focus:ring-blue-500 focus:border-blue-500 resize-none"
+            className="border text-[15px] border-gray-300 font-medium placeholder:text-gray-600 rounded-lg p-4 h-[164px] w-full focus:ring-blue-500 focus:border-blue-500 resize-none"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={5}

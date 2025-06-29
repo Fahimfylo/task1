@@ -24,7 +24,7 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
             <input
               type="text"
               placeholder="Dallas apartments complex"
-              className="border text-sm border-gray-300 rounded-[15px] placeholder:text-gray-600  px-4 h-[48px] w-[230px] pr-5 mt-2 font-semibold"
+              className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
 
@@ -36,7 +36,7 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
             <input
               type="number"
               placeholder="00"
-              className="border text-sm border-gray-300 placeholder:text-gray-600 rounded-[15px] px-4 h-[48px] w-[230px] mt-2 font-semibold"
+              className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
 
@@ -48,7 +48,7 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
             <input
               type="text"
               placeholder="https//:"
-              className="border text-sm border-gray-300 placeholder:text-gray-600 rounded-[15px] px-4 h-[48px] mt-2 font-semibold"
+              className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
 
@@ -60,7 +60,7 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
             <div className="relative mt-2 w-[230px]">
               <select
                 defaultValue=""
-                className="appearance-none bg-white border text-sm border-gray-300 text-gray-600 rounded-[15px] px-4 h-[48px] w-full font-semibold pr-10 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full border cursor-pointer text-gray-600 text-[15px] border-gray-300 rounded-lg px-4 h-[48px] pr-10 appearance-none font-semibold focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="" disabled>
                   Choose country
@@ -88,7 +88,7 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
             <input
               type="text"
               placeholder="123 Main St"
-              className="border text-sm border-gray-300 placeholder:text-gray-600 rounded-[15px] px-4 h-[48px] w-[230px] mt-2 font-semibold"
+              className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
 
@@ -101,7 +101,7 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
             <input
               type="number"
               placeholder="123"
-              className="border text-sm border-gray-300 placeholder:text-gray-600 rounded-[15px] px-4 h-[48px] mt-2 font-semibold"
+              className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
 
@@ -113,7 +113,7 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
             <input
               type="text"
               placeholder="Dallas"
-              className="border text-sm border-gray-300 placeholder:text-gray-600 rounded-[15px] px-4 h-[48px] w-[230px] mt-2 font-semibold"
+              className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
           {/* Field: State/Territory */}
@@ -124,7 +124,7 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
             <div className="relative mt-2 w-[230px]">
               <select
                 defaultValue=""
-                className="appearance-none border text-sm border-gray-300 text-gray-600 rounded-[15px] px-4 h-[48px] w-full font-semibold pr-10 focus:ring-blue-500 focus:border-blue-500"
+                className="appearance-none text-[15px] border text-sm border-gray-300 text-gray-600 rounded-[15px] px-4 h-[48px] w-full font-semibold pr-10 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="" disabled>
                   Choose state
@@ -152,7 +152,7 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
             <input
               type="number"
               placeholder="00000"
-              className="border text-sm border-gray-300 placeholder:text-gray-600 rounded-[15px] px-4 h-[48px] mt-2 font-semibold"
+              className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
         </div>

@@ -1,20 +1,11 @@
 import React, { useState } from "react";
-// IMPORTANT: Please adjust the path to ReusablePopup based on its actual location in your project.
-// If you encounter "Could not resolve" errors, carefully check your file structure.
-import ReusablePopup from "../../../components/common/ReusablePopup"; // Common path from your previous code
-
-// IMPORTANT: react-icons is an external library.
-// If you are running this code in your own environment,
-// you need to install it via npm or yarn:
-// npm install react-icons
-// or
-// yarn add react-icons
-import { FiSearch } from "react-icons/fi"; // Search icon
+import ReusablePopup from "../../../components/common/ReusablePopup"; 
+import { FiSearch } from "react-icons/fi"; 
 import { FaFan } from "react-icons/fa6";
 import { GrCar } from "react-icons/gr";
 import {
-  MdOutlineAcUnit, // Air conditioning
-  MdOutlineCable, // Cable ready
+  MdOutlineAcUnit, 
+  MdOutlineCable, 
   MdOutlineHeight,
   MdOutlineBalcony,
   MdOutlineKitchen,
@@ -67,16 +58,15 @@ const CommunityPopup = ({ isOpen, onClose }) => {
 
   const handleSave = () => {
     console.log("Selected Amenities:", selectedAmenities);
-    // Implement your actual save/submission logic here
-    onClose(); // Close the popup after saving
+    onClose(); 
   };
 
   return (
     <ReusablePopup
       isOpen={isOpen}
-      title="Community's amenity/features" // Title from screenshot
+      title="Community's amenity/features" 
       onClose={onClose}
-      onSave={handleSave} // Calls handleSave on "Add" button click
+      onSave={handleSave} 
     >
       <div className="flex flex-col justify-center pt-5 pb-1 px-6">
         {/* Search Input */}
@@ -96,15 +86,13 @@ const CommunityPopup = ({ isOpen, onClose }) => {
 
         {/* Amenities Grid */}
         <div className="grid grid-cols-3 h-[370px] gap-3 overflow-y-auto max-h-[300px] pb-4">
-          {" "}
-          {/* Added max-h and overflow for scrollable area */}
           {filteredAmenities.map((amenity) => {
             const IconComponent = amenityIcons[amenity];
             const isSelected = selectedAmenities.includes(amenity);
             return (
               <button
                 key={amenity}
-                className={`flex items-center justify-center border-2 rounded-xl text-sm transition-all duration-200
+                className={`flex items-center justify-center border-2 rounded-xl text-[15px] font-medium transition-all duration-200
                           ${
                             isSelected
                               ? "bg-blue-100 border-blue-500 text-blue-800"

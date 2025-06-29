@@ -6,6 +6,12 @@ import RentPopup from "./popups/RentPopup"
 import ApplicationPopup from "./popups/ApplicationPopup"
 import AboutPropertyPopup from "./popups/AboutPropertyPopup"
 import CommunityPopup from "./popups/CommunitiesPopup";
+import PetFeesPopup from "./popups/PetFeesPopup";
+import ParkingPopup from "./popups/ParkingPopup";
+import EducationPopup from "./popups/EducationPopup";
+import NearestStationPopup from "./popups/NearestStationPopup";
+import NearestLandmarkPopup from "./popups/NearestLandmarkPopup";
+import UtilitiesProviderPopup from "./popups/UtilitiesProviderPopup";
 
 const ManageProperty = () => {
   const [openPopup, setOpenPopup] = useState(null);
@@ -19,6 +25,13 @@ const ManageProperty = () => {
     { key: "application", label: "application" },
     { key: "property", label: "property" },
     { key: "communities", label: "communities" },
+    { key: "petfees", label: "petfees" },
+    { key: "parking", label: "parking" },
+    { key: "education", label: "education" },
+    { key: "station", label: "station" },
+    { key: "landmark", label: "landmark" },
+    { key: "utilites", label: "utilites" },
+
 
     // add other sections here...
   ];
@@ -31,6 +44,12 @@ const ManageProperty = () => {
     application: ApplicationPopup,
     property: AboutPropertyPopup,
     communities:   CommunityPopup,
+    petfees:   PetFeesPopup,
+    parking:   ParkingPopup,
+    education: EducationPopup,
+    station: NearestStationPopup,
+    landmark: NearestLandmarkPopup,
+    utilites: UtilitiesProviderPopup,
   };
 
   const PopupComponent = openPopup ? popupComponents[openPopup] : null;

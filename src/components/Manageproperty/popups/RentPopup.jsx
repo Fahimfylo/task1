@@ -33,7 +33,7 @@ const RentPopup = ({ isOpen, onClose }) => {
             <div className="flex flex-col relative">
               <label
                 htmlFor="paymentFrequency"
-                className="font-medium text-gray-800 text-sm mb-2"
+                className="font-medium text-gray-800 text-[15px] mb-2"
               >
                 Rent payment frequency<span className="text-red-500">*</span>
               </label>
@@ -41,7 +41,7 @@ const RentPopup = ({ isOpen, onClose }) => {
               <div className="relative w-full">
                 <select
                   id="paymentFrequency"
-                  className="w-full border cursor-pointer text-gray-600 text-sm border-gray-300 rounded-lg px-4 h-[48px] pr-10 appearance-none font-semibold focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full border cursor-pointer text-gray-600 text-[15px] border-gray-300 rounded-lg px-4 h-[48px] pr-10 appearance-none font-semibold focus:ring-blue-500 focus:border-blue-500"
                   value={paymentFrequency}
                   onChange={(e) => setPaymentFrequency(e.target.value)}
                 >
@@ -63,7 +63,7 @@ const RentPopup = ({ isOpen, onClose }) => {
 
           {/* Reminder Date */}
           <div className="flex flex-col">
-            <label className="font-medium text-gray-800 text-sm mb-2">
+            <label className="font-medium text-gray-800 text-[15px] mb-2">
               Rent Reminder/Statement date
               <span className="text-red-500">*</span>
             </label>
@@ -72,7 +72,7 @@ const RentPopup = ({ isOpen, onClose }) => {
                 selected={reminderDate}
                 onChange={(date) => setReminderDate(date)}
                 dateFormat="dd MMMM, yyyy" // Standard dateFormat for full year
-                className="border text-sm border-gray-300 placeholder:text-gray-600 placeholder:font-semibold rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500 pr-10"
+                className="border text-sm border-gray-300 text-[15px] placeholder:text-gray-600 placeholder:font-semibold rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500 pr-10"
                 placeholderText="Select a date"
                 popperPlacement="bottom-start"
                 popperClassName="z-[9999]"
@@ -101,7 +101,7 @@ const RentPopup = ({ isOpen, onClose }) => {
 
           {/* Due Date */}
           <div className="flex flex-col">
-            <label className="font-medium text-gray-800 text-sm mb-2">
+            <label className="font-medium text-gray-800 text-[15px] mb-2">
               Rent due date<span className="text-red-500">*</span>
             </label>
             <div className="relative">
@@ -109,7 +109,7 @@ const RentPopup = ({ isOpen, onClose }) => {
                 selected={dueDate}
                 onChange={(date) => setDueDate(date)}
                 dateFormat="dd MMMM, yyyy" // Standard dateFormat for full year
-                className="border text-sm border-gray-300 placeholder:text-gray-600 placeholder:font-semibold rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500 pr-10"
+                className="border text-[15px] border-gray-300 placeholder:text-gray-600 placeholder:font-semibold rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500 pr-10"
                 placeholderText="Select a date"
                 popperPlacement="bottom-start"
                 popperClassName="z-[9999]"

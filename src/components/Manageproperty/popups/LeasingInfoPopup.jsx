@@ -15,7 +15,6 @@ const LeasingInfoPopup = ({ isOpen, onClose }) => {
       managerEmail,
       sameAddress,
     });
-    // Add your API call or submission logic here
     onClose();
   };
 
@@ -27,13 +26,11 @@ const LeasingInfoPopup = ({ isOpen, onClose }) => {
       onSave={handleSave}
     >
       <div className="flex w-[780px] h-[226px] justify-center flex-col px-6">
-        {/* First Row Group: Manager Name & Phone Number */}
         <div className="grid grid-cols-2 gap-6 mb-4">
-          {/* Manager Name */}
           <div className="flex flex-col">
             <label
               htmlFor="managerName"
-              className="font-medium text-[15px] text-gray-800 text-sm mb-2"
+              className="font-medium text-[15px] text-gray-800 mb-2"
             >
               Leasing Manager Name<span className="text-red-500">*</span>
             </label>
@@ -41,17 +38,16 @@ const LeasingInfoPopup = ({ isOpen, onClose }) => {
               type="text"
               id="managerName"
               placeholder="Enter manager name"
-              className="border text-sm rounded-[15px] font-semibold border-gray-300 placeholder:text-gray-600 px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
+              className="border rounded-[15px] border-gray-300 text-[15px] font-medium placeholder:text-gray-600 px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
               value={managerName}
               onChange={(e) => setManagerName(e.target.value)}
             />
           </div>
 
-          {/* Phone Number with Country Code */}
           <div className="flex flex-col">
             <label
               htmlFor="phoneInput"
-              className="font-medium text-[15px] text-gray-800 mb-2"
+              className="font-medium text-[15px] text-gray-700 mb-2"
             >
               Leasing Manager Phone Number
               <span className="text-red-500">*</span>
@@ -65,9 +61,7 @@ const LeasingInfoPopup = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Second Row Group: Email & Checkbox */}
         <div className="grid grid-cols-2 gap-6 items-end">
-          {/* Email */}
           <div className="flex flex-col">
             <label
               htmlFor="managerEmail"
@@ -79,13 +73,12 @@ const LeasingInfoPopup = ({ isOpen, onClose }) => {
               type="email"
               id="managerEmail"
               placeholder="leasing@rentyard.com"
-              className="border text-sm rounded-[15px] border-gray-300 font-semibold placeholder:text-gray-600 px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
+              className="border rounded-[15px] border-gray-300 text-[15px] font-medium placeholder:text-gray-600 px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
               value={managerEmail}
               onChange={(e) => setManagerEmail(e.target.value)}
             />
           </div>
 
-          {/* Checkbox */}
           <div className="flex items-center pb-4">
             <input
               type="checkbox"

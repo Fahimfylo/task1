@@ -35,14 +35,13 @@ const Footer = ({ hasPermission }) => {
           : {}
       }
     >
-      {/* 👇 Render PageProgress inside the footer as its top border */}
       <PageProgress />
 
-      <div className="w-full mx-auto max-w-[1280px] flex justify-between">
+      <div className="w-full max-w-[1440px] flex justify-between">
         <p
           disabled={currentIndex === 0}
           onClick={() => navigate(routeOrder[currentIndex - 1])}
-          className="py-2 underline font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50  md:ml-5 ml-3 sm:ml-0"
+          className="py-2 underline font-semibold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50  md:ml-5 lg:ml-20 sm:ml-0"
         >
           Back
         </p>
@@ -51,7 +50,7 @@ const Footer = ({ hasPermission }) => {
           <button
             onClick={handleNext}
             disabled={!hasPermission}
-            className={`px-5 py-2 text-white rounded-[13px] transition-colors md:mr-5 mr-3 sm:mr-0 ${
+            className={`px-5 py-2 text-white rounded-[13px]  transition-colors md:mr-5 lg:mr-20 sm:mr-0 ${
               hasPermission
                 ? "bg-blue-500 hover:bg-blue-600 cursor-pointer"
                 : "bg-blue-200 cursor-not-allowed"
