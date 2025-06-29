@@ -10,10 +10,11 @@ import ReusablePopup from "../../../components/common/ReusablePopup"; // Common 
 // or
 // yarn add react-icons
 import { FiSearch } from "react-icons/fi"; // Search icon
+import { FaFan } from "react-icons/fa6";
+import { GrCar } from "react-icons/gr";
 import {
   MdOutlineAcUnit, // Air conditioning
   MdOutlineCable, // Cable ready
-  // MdOutlineFan, // REMOVE or REPLACE THIS
   MdOutlineHeight,
   MdOutlineBalcony,
   MdOutlineKitchen,
@@ -32,9 +33,9 @@ import {
 const amenityIcons = {
   "Air conditioning": MdOutlineAcUnit,
   "Cable ready": MdOutlineCable,
-  "High ceilings": MdOutlineHeight,
+  "Ceiling fan": FaFan,
   "Private balcony": MdOutlineBalcony,
-  Refrigerator: MdOutlineKitchen,
+  "Refrigerator": MdOutlineKitchen,
   "Wooded views": MdOutlineForest,
   "W/D hookup": MdOutlineWash,
   "Hardwood Floor (home)": MdOutlineBed,
@@ -42,7 +43,7 @@ const amenityIcons = {
   "First aid kit": MdOutlineMedicalServices,
   "Carbon monoxide alarm": MdOutlineSensorDoor,
   "Expanded patios (home)": MdOutlineDeck,
-  "Free parking on premises": MdOutlineLocalParking,
+  "Free parking on premises": GrCar,
   "Fire extinguisher": MdOutlineLocalFireDepartment,
 };
 
@@ -77,13 +78,13 @@ const CommunityPopup = ({ isOpen, onClose }) => {
       onClose={onClose}
       onSave={handleSave} // Calls handleSave on "Add" button click
     >
-      <div className="flex flex-col w-[780px] px-6 py-6">
+      <div className="flex flex-col justify-center pt-5 pb-1 px-6">
         {/* Search Input */}
         <div className="relative mb-6">
           <input
             type="text"
             placeholder="Search amenities"
-            className="border text-sm border-gray-300 rounded-lg pl-10 pr-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
+            className="border text-sm border-gray-300 rounded-full pl-10 pr-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -94,7 +95,7 @@ const CommunityPopup = ({ isOpen, onClose }) => {
         </div>
 
         {/* Amenities Grid */}
-        <div className="grid grid-cols-3 gap-3 overflow-y-auto max-h-[300px] pb-4">
+        <div className="grid grid-cols-3 h-[370px] gap-3 overflow-y-auto max-h-[300px] pb-4">
           {" "}
           {/* Added max-h and overflow for scrollable area */}
           {filteredAmenities.map((amenity) => {
@@ -103,13 +104,13 @@ const CommunityPopup = ({ isOpen, onClose }) => {
             return (
               <button
                 key={amenity}
-                className={`flex items-center justify-center p-2 border rounded-lg text-sm transition-all duration-200
+                className={`flex items-center justify-center border-2 rounded-xl text-sm transition-all duration-200
                           ${
                             isSelected
                               ? "bg-blue-100 border-blue-500 text-blue-800"
                               : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
                           }
-                          shadow-sm`}
+                          `}
                 onClick={() => toggleAmenity(amenity)}
               >
                 {IconComponent && <IconComponent className="mr-2" size={20} />}
