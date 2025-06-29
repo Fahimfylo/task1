@@ -10,6 +10,7 @@ const Footer = ({ hasPermission }) => {
   const routeOrder = [
     "/",
     "/condominium-info",
+    "/condominium-summary",
     "/add-property-info",
     "/choose-plan",
   ];

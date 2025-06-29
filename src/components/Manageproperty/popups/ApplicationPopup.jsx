@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup"; 
+import toast from "react-hot-toast";
 
 const ApplicationAgreementPopup = ({ isOpen, onClose }) => {
   const [agreementFile, setAgreementFile] = useState(null);
@@ -13,9 +14,7 @@ const ApplicationAgreementPopup = ({ isOpen, onClose }) => {
   };
 
   const handleSave = () => {
-    console.log({
-      agreementFile: agreementFile ? agreementFile.name : null,
-      acceptImmigrantApplication,
+    toast.success("Saved successfully!", {
     });
     onClose(); 
   };

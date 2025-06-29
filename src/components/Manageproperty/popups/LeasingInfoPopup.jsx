@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
 import PhoneInputWithCountry from "../../../components/common/PhoneInputWithCountry"; // Adjust path if needed
+import toast from "react-hot-toast";
 
 const LeasingInfoPopup = ({ isOpen, onClose }) => {
   const [phone, setPhone] = useState("");
@@ -9,11 +10,7 @@ const LeasingInfoPopup = ({ isOpen, onClose }) => {
   const [sameAddress, setSameAddress] = useState(false);
 
   const handleSave = () => {
-    console.log({
-      managerName,
-      phone,
-      managerEmail,
-      sameAddress,
+    toast.success("Saved successfully!", {
     });
     onClose();
   };

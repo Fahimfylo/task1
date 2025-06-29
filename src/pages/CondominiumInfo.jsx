@@ -15,6 +15,7 @@ import NearestStationPopup from "../components/Manageproperty/popups/NearestStat
 import NearestLandmarkPopup from "../components/Manageproperty/popups/NearestLandmarkPopup";
 import UtilitiesProviderPopup from "../components/Manageproperty/popups/UtilitiesProviderPopup";
 
+
 const CondoInformationForm = () => {
   // States for controlling popup visibility
   const [showAddressPopup, setShowAddressPopup] = useState(false);
@@ -161,12 +162,12 @@ const CondoInformationForm = () => {
           <span className="text-gray-500">(It's not unit photo)*</span>
         </h2>
         <div className="p-5 border-t border-gray-300 space-y-6 flex flex-wrap gap-8">
-          <div className="">
+          <div>
             <h3 className="font-medium text-gray-700 mb-3">
               Featured Photos <span className="text-orange-500">*</span>
             </h3>
 
-            <div className="flex flex-col md:flex-row gap-2 flex-wrap">
+            <div className="flex flex-col md:flex-row flex-wrap">
               {/* Cover Photo */}
               <div
                 className="w-full md:w-[217px] h-[165px] border-2 border-dashed border-blue-500 rounded-xl flex flex-col items-center justify-center text-gray-500 text-sm cursor-pointer gap-2 bg-gray-50"
@@ -399,8 +400,13 @@ const CondoInformationForm = () => {
       <ChargesPopup
         isOpen={showChargesPopup}
         onClose={() => setChargesPopup(false)}
+        onSaveData={() => {}}
       />
-      <RentPopup isOpen={showRentPopup} onClose={() => setRentPopup(false)} />
+      <RentPopup
+        isOpen={showRentPopup}
+        onClose={() => setRentPopup(false)}
+        onSaveData={() => {}}
+      />
       <ApplicationPopup
         isOpen={showApplicationPopup}
         onClose={() => setApplicationPopup(false)}
@@ -416,26 +422,32 @@ const CondoInformationForm = () => {
       <PetFeesPopup
         isOpen={showPetFeesPopup}
         onClose={() => setPetFeesPopup(false)}
+        onSaveData={() => {}}
       />
       <ParkingPopup
         isOpen={showParkingPopup}
         onClose={() => setParkingPopup(false)}
+        onSaveData={() => {}}
       />
       <EducationPopup
         isOpen={showEducationPopup}
         onClose={() => setEducationPopup(false)}
+        onSaveData={() => {}}
       />
       <NearestStationPopup
         isOpen={showNearestStationPopup}
         onClose={() => setNearestStationPopup(false)}
+        onSaveData={() => {}}
       />
       <NearestLandmarkPopup
         isOpen={showNearestLandmarkPopup}
         onClose={() => setNearestLandmarkPopup(false)}
+        onSaveData={() => {}}
       />
       <UtilitiesProviderPopup
         isOpen={showUtilitiesProviderPopup}
         onClose={() => setUtilitiesProviderPopup(false)}
+        onSaveData={() => {}}
       />
     </div>
   );

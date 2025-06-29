@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
 import { SlArrowDown } from "react-icons/sl";
+import toast from "react-hot-toast";
 
 const ParkingPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   const [parkingTime, setParkingTime] = useState(
@@ -12,10 +13,7 @@ const ParkingPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   const maxCharacters = 200;
 
   const handleSave = () => {
-    console.log({
-      parkingTime,
-      parkingOverview,
-    });
+    toast.success("Saved successfully!", {});
     onSaveData({
       parkingTime,
       parkingOverview,

@@ -11,6 +11,7 @@ import ReusablePopup from "../../../components/common/ReusablePopup"; // Common 
 // yarn add react-icons
 import { SlArrowDown } from "react-icons/sl"; // Import SlArrowDown icon
 import { HiOutlineExclamationCircle } from "react-icons/hi"; // For the exclamation icon in the footer
+import toast from "react-hot-toast";
 
 const ChargesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   const [applicationFee, setApplicationFee] = useState(
@@ -26,6 +27,8 @@ const ChargesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
       applicationFee,
       applicantType,
       adminFee,
+    });
+    toast.success("Saved successfully!", {
     });
     onClose();
   };
@@ -60,7 +63,7 @@ const ChargesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
                 type="number"
                 id="applicationFee"
                 placeholder="100"
-                min="0" 
+                min="0"
                 className="border border-gray-300 border-r-0 rounded-l-lg px-4 h-[48px] w-full placeholder:text-gray-600 placeholder:font-medium focus:ring-blue-500 focus:border-blue-500" // Adjusted border-r-0 and placeholder color
                 value={applicationFee}
                 onChange={(e) => setApplicationFee(e.target.value)}
@@ -96,8 +99,8 @@ const ChargesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
             <input
               type="number"
               id="adminFee"
-              placeholder="00" 
-              min="0" 
+              placeholder="00"
+              min="0"
               className="border border-gray-300 rounded-lg px-4 h-[48px] w-full text-[15px] placeholder:text-gray-600 placeholder:font-medium focus:ring-blue-500 focus:border-blue-500" // Adjusted placeholder color
               value={adminFee}
               onChange={(e) => setAdminFee(e.target.value)}

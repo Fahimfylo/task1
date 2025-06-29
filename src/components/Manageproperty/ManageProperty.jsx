@@ -12,6 +12,7 @@ import EducationPopup from "./popups/EducationPopup";
 import NearestStationPopup from "./popups/NearestStationPopup";
 import NearestLandmarkPopup from "./popups/NearestLandmarkPopup";
 import UtilitiesProviderPopup from "./popups/UtilitiesProviderPopup";
+import PaymentPopup from "./popups/PaymentPopup";
 
 const ManageProperty = () => {
   const [openPopup, setOpenPopup] = useState(null);
@@ -31,9 +32,7 @@ const ManageProperty = () => {
     { key: "station", label: "station" },
     { key: "landmark", label: "landmark" },
     { key: "utilites", label: "utilites" },
-
-
-    // add other sections here...
+    { key: "payment", label: "payment" },
   ];
 
   const popupComponents = {
@@ -50,6 +49,7 @@ const ManageProperty = () => {
     station: NearestStationPopup,
     landmark: NearestLandmarkPopup,
     utilites: UtilitiesProviderPopup,
+    payment: PaymentPopup,
   };
 
   const PopupComponent = openPopup ? popupComponents[openPopup] : null;

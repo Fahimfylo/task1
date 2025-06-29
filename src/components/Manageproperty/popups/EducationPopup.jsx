@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
 import { SlArrowDown } from "react-icons/sl";
+import toast from "react-hot-toast";
 
 const EducationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   const [institutionType, setInstitutionType] = useState(
@@ -15,12 +16,7 @@ const EducationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   );
 
   const handleSave = () => {
-    console.log({
-      institutionType,
-      distance,
-      distanceUnit,
-      institutionName,
-    });
+    toast.success("Saved successfully!", {});
     onSaveData({
       institutionType,
       distance,

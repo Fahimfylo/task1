@@ -1,11 +1,12 @@
 import React from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
 import { SlArrowDown } from "react-icons/sl";
+import toast from "react-hot-toast";
 
 const PropertyAddressPopup = ({ isOpen, onClose }) => {
   const handleSave = () => {
-    // handle save logic here
-    onClose(); // close after save
+    toast.success("Saved successfully!", {});
+    onClose();
   };
 
   return (

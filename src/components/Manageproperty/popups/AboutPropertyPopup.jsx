@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
+import toast from "react-hot-toast";
 
 const AboutPropertyPopup = ({ isOpen, onClose }) => {
   const [message, setMessage] = useState("");
 
   const handleSave = () => {
-    console.log({ message });
+    toast.success("Saved successfully!", {});
     onClose();
   };
 

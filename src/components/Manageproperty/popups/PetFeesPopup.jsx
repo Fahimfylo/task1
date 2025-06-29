@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup"; // Common path from your previous code
 import { SlArrowDown } from "react-icons/sl"; // Import SlArrowDown icon
+import toast from "react-hot-toast";
 
 const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   const [petType, setPetType] = useState(initialData?.petType || "");
@@ -14,13 +15,6 @@ const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   );
 
   const handleSave = () => {
-    console.log({
-      petType,
-      maxWeight,
-      oneTimeFee,
-      securityDeposit,
-      monthlyRent,
-    });
     onSaveData({
       petType,
       maxWeight,
@@ -28,6 +22,7 @@ const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
       securityDeposit,
       monthlyRent,
     });
+    toast.success("Saved successfully!", {});
     onClose(); // Close the popup after saving
   };
 

@@ -5,11 +5,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { SlCalender } from "react-icons/sl";
 import { SlArrowDown } from "react-icons/sl";
+import toast from "react-hot-toast";
 
 const RentPopup = ({ isOpen, onClose }) => {
   const [paymentFrequency, setPaymentFrequency] = useState("Monthly");
   const [reminderDate, setReminderDate] = useState(null);
-  const [dueDate, setDueDate] = useState(null); 
+  const [dueDate, setDueDate] = useState(null);
 
   const handleSave = () => {
     console.log({
@@ -17,6 +18,7 @@ const RentPopup = ({ isOpen, onClose }) => {
       reminderDate,
       dueDate,
     });
+    toast.success("Saved successfully!", {});
     onClose();
   };
 

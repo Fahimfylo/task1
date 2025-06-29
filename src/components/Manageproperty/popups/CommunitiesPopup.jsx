@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ReusablePopup from "../../../components/common/ReusablePopup"; 
-import { FiSearch } from "react-icons/fi"; 
+import ReusablePopup from "../../../components/common/ReusablePopup";
+import { FiSearch } from "react-icons/fi";
 import { FaFan } from "react-icons/fa6";
 import { GrCar } from "react-icons/gr";
 import {
-  MdOutlineAcUnit, 
-  MdOutlineCable, 
+  MdOutlineAcUnit,
+  MdOutlineCable,
   MdOutlineHeight,
   MdOutlineBalcony,
   MdOutlineKitchen,
@@ -19,14 +19,14 @@ import {
   MdOutlineDeck,
   MdOutlineLocalParking,
 } from "react-icons/md";
-
+import toast from "react-hot-toast";
 
 const amenityIcons = {
   "Air conditioning": MdOutlineAcUnit,
   "Cable ready": MdOutlineCable,
   "Ceiling fan": FaFan,
   "Private balcony": MdOutlineBalcony,
-  "Refrigerator": MdOutlineKitchen,
+  Refrigerator: MdOutlineKitchen,
   "Wooded views": MdOutlineForest,
   "W/D hookup": MdOutlineWash,
   "Hardwood Floor (home)": MdOutlineBed,
@@ -57,16 +57,16 @@ const CommunityPopup = ({ isOpen, onClose }) => {
   };
 
   const handleSave = () => {
-    console.log("Selected Amenities:", selectedAmenities);
-    onClose(); 
+    toast.success("Saved successfully!", {});
+    onClose();
   };
 
   return (
     <ReusablePopup
       isOpen={isOpen}
-      title="Community's amenity/features" 
+      title="Community's amenity/features"
       onClose={onClose}
-      onSave={handleSave} 
+      onSave={handleSave}
     >
       <div className="flex flex-col justify-center pt-5 pb-1 px-6">
         {/* Search Input */}

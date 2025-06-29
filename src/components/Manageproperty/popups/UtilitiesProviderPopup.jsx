@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-// IMPORTANT: You MUST adjust the import path below to match your actual project structure.
-// The "Could not resolve" error means this path is currently incorrect for your setup.
 import ReusablePopup from "../../../components/common/ReusablePopup"; // Common path from your previous code
 
-// IMPORTANT: react-icons is an external library.
-// If you are running this code in your own environment,
-// you need to install it via npm or yarn:
-// npm install react-icons
-// or
-// yarn add react-icons
 import { SlArrowDown } from "react-icons/sl"; // Import SlArrowDown icon
+import toast from "react-hot-toast";
 
 const UtilitiesProviderPopup = ({
   isOpen,
@@ -25,15 +18,11 @@ const UtilitiesProviderPopup = ({
   );
 
   const handleSave = () => {
-    console.log({
-      utilityType,
-      providerCompanyName,
-    });
-    // Implement your actual save/submission logic here
     onSaveData({
       utilityType,
       providerCompanyName,
     });
+    toast.success("Saved successfully!", {});
     onClose(); // Close the popup after saving
   };
 
@@ -44,11 +33,8 @@ const UtilitiesProviderPopup = ({
       onClose={onClose}
       onSave={handleSave} // Calls handleSave on "Add" button click
     >
-      {/* Overall popup content size: w-780, h-auto to fit content */}
       <div className="flex flex-col w-[780px] px-6 py-6 space-y-4">
-        {/* First Row: Utility type & Provider company name */}
         <div className="grid grid-cols-2 gap-6">
-          {/* Utility type */}
           <div className="flex flex-col">
             <label
               htmlFor="utilityType"

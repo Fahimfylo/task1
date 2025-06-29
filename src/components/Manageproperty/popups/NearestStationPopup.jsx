@@ -2,28 +2,29 @@ import React, { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup"; // Common path from your previous code
 
 import { SlArrowDown } from "react-icons/sl"; // Import SlArrowDown icon
-
+import toast from "react-hot-toast";
 
 const NearestStationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
-  const [stationType, setStationType] = useState(initialData?.stationType || ""); // Default from screenshot (Select)
+  const [stationType, setStationType] = useState(
+    initialData?.stationType || ""
+  ); // Default from screenshot (Select)
   const [distance, setDistance] = useState(initialData?.distance || "");
-  const [distanceUnit, setDistanceUnit] = useState(initialData?.distanceUnit || "Mile"); // Default from screenshot
-  const [stationName, setStationName] = useState(initialData?.stationName || "");
+  const [distanceUnit, setDistanceUnit] = useState(
+    initialData?.distanceUnit || "Mile"
+  ); // Default from screenshot
+  const [stationName, setStationName] = useState(
+    initialData?.stationName || ""
+  );
 
   const handleSave = () => {
-    console.log({
-      stationType,
-      distance,
-      distanceUnit,
-      stationName,
-    });
+    toast.success("Saved successfully!", {});
     onSaveData({
       stationType,
       distance,
       distanceUnit,
       stationName,
     });
-    onClose(); 
+    onClose();
   };
 
   return (
@@ -36,7 +37,10 @@ const NearestStationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
       <div className="flex flex-col w-[780px] px-6 py-6 space-y-4">
         <div className="grid grid-cols-2 gap-6">
           <div className="flex flex-col">
-            <label htmlFor="stationType" className="font-medium text-gray-800 mb-2">
+            <label
+              htmlFor="stationType"
+              className="font-medium text-gray-800 mb-2"
+            >
               Nearest station type<span className="text-red-500">*</span>
             </label>
             <div className="relative w-full">
@@ -61,7 +65,10 @@ const NearestStationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="distance" className="font-medium text-gray-600 mb-2">
+            <label
+              htmlFor="distance"
+              className="font-medium text-gray-600 mb-2"
+            >
               Distance from property<span className="text-red-500">*</span>
             </label>
             <div className="flex border border-gray-300 rounded-lg h-[48px] overflow-hidden focus-within:ring-blue-500 focus-within:border-blue-500 transition-all duration-200">
@@ -94,7 +101,10 @@ const NearestStationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
 
         {/* Nearest station name */}
         <div className="flex flex-col">
-          <label htmlFor="stationName" className="font-medium text-gray-800 mb-2">
+          <label
+            htmlFor="stationName"
+            className="font-medium text-gray-800 mb-2"
+          >
             Nearest station name<span className="text-red-500">*</span>
           </label>
           <input
