@@ -1,4 +1,3 @@
-import React from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
 import { SlArrowDown } from "react-icons/sl";
 import toast from "react-hot-toast";
@@ -28,8 +27,6 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
               className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
-
-          {/* Field: Total apartment unit */}
           <div className="flex flex-col w-[238px] h-[81px] justify-center">
             <p className="font-medium text-gray-800 text-[15px] mb-1 text-sm">
               Total apartment unit<span className="text-red-500">*</span>
@@ -40,8 +37,6 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
               className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
-
-          {/* Field: Property website */}
           <div className="flex flex-col w-[238px] h-[81px] justify-center">
             <p className="font-medium text-gray-800 text-[15px] mb-1 text-sm">
               Property website <span className="text-gray-700">(optional)</span>
@@ -52,8 +47,6 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
               className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
-
-          {/* Field: Country/Region */}
           <div className="flex flex-col w-[238px] h-[81px] justify-center">
             <p className="font-medium text-gray-800 text-[15px] mb-1 text-sm">
               Country/Region<span className="text-red-500">*</span>
@@ -73,15 +66,12 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
                 <option value="Bangladesh">Bangladesh</option>
                 <option value="Other">Other</option>
               </select>
-
               <SlArrowDown
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 pointer-events-none"
                 size={16}
               />
             </div>
           </div>
-
-          {/* Field: Street address */}
           <div className="flex flex-col w-[238px] h-[81px] justify-center">
             <p className="font-medium text-gray-800 text-[15px] mb-1 text-sm">
               Street address<span className="text-red-500">*</span>
@@ -92,8 +82,6 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
               className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
-
-          {/* Field: Apt/suite/unit */}
           <div className="flex flex-col w-[238px] h-[81px] justify-center">
             <p className="font-medium text-gray-800 text-[15px] mb-1 text-sm">
               Apt, suite, unit{" "}
@@ -105,8 +93,6 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
               className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
-
-          {/* Field: City/Town */}
           <div className="flex flex-col w-[238px] h-[81px] justify-center">
             <p className="font-medium text-gray-800 text-[15px] mb-1 text-sm">
               City/Town<span className="text-red-500">*</span>
@@ -117,7 +103,6 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
               className="border text-[15px] border-gray-300 rounded-[15px] font-medium placeholder:text-gray-600  px-3 h-[48px] w-[230px] pr-5 mt-2"
             />
           </div>
-          {/* Field: State/Territory */}
           <div className="flex flex-col w-[238px] h-[81px] justify-center">
             <p className="font-medium text-gray-800 text-[15px] mb-1 text-sm">
               State/Territory<span className="text-red-500">*</span>
@@ -144,8 +129,6 @@ const PropertyAddressPopup = ({ isOpen, onClose }) => {
               />
             </div>
           </div>
-
-          {/* Field: Zip Code */}
           <div className="flex flex-col w-[238px] h-[81px] justify-center">
             <p className="font-medium text-gray-800 text-[15px] mb-1 text-sm">
               Zip Code<span className="text-red-500">*</span>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
   const [nameOnCard, setNameOnCard] = useState("");
@@ -54,14 +54,13 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
           />
           <rect x="2" y="14" width="16" height="3" rx="1" ry="1"></rect>
         </svg>
-      ); // Generic card icon
+      ); 
     return null;
   };
   const cardIcon = getCardIcon(cardNumber);
 
   const handleSave = () => {
     if (!nameOnCard || !cardNumber || !expireDate || !cvc) {
-      // You might want to add a toast notification for validation errors here
       return;
     }
     onSave({ nameOnCard, cardNumber, expireDate, cvc });
@@ -86,7 +85,7 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
             aria-label="Close popup"
           >
             <svg
-              className="h-6 w-6 text-gray-500" // Adjusted color to match screenshot
+              className="h-6 w-6 cursor-pointer text-gray-500" 
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -100,8 +99,6 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
             </svg>
           </button>
         </div>
-
-        {/* Body */}
         <div className="p-6 space-y-4">
           <div className="grid grid-cols-2 gap-6">
             <div>
@@ -130,7 +127,7 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
                 />
                 {cardIcon && (
                   <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    {cardIcon} {/* Render the card SVG/emoji */}
+                    {cardIcon} 
                   </span>
                 )}
               </div>
@@ -182,7 +179,7 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
         <div className="flex justify-end p-4 border-t border-gray-200">
           <button
             onClick={handleSave}
-            className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200" // Adjusted padding and transition
+            className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
           >
             Save
           </button>

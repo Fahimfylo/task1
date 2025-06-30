@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
 import { SlArrowDown } from "react-icons/sl";
 import toast from "react-hot-toast";

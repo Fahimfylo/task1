@@ -1,4 +1,3 @@
-import React from "react";
 import { X } from "lucide-react";
 
 const ReusablePopup = ({
@@ -8,17 +7,16 @@ const ReusablePopup = ({
   onSave,
   children,
   className = "",
-  footerLeft = null, 
+  footerLeft = null,
 }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-40">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 sm:px-0">
       <div
-        className={`w-[780px] rounded-xl shadow-lg flex flex-col overflow-hidden bg-white ${className}`}
+        className={`w-full max-w-[780px] rounded-xl shadow-lg flex flex-col overflow-hidden bg-white ${className}`}
       >
-        {/* Header */}
-        <div className="flex justify-between bg-gray-100 items-center px-6 py-4 border-b border-gray-300">
+        <div className="flex justify-between bg-gray-100 items-center px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-300">
           <h2 className="text-lg font-medium text-gray-500 text-[15px]">
             {title}
           </h2>
@@ -26,14 +24,12 @@ const ReusablePopup = ({
             <X className="w-5 h-5 cursor-pointer text-gray-600" />
           </button>
         </div>
-        {/* Content */}
         <div className="flex-1 overflow-y-auto">{children}</div>
-        {/* Footer */}
-        <div className="flex mx-6 justify-between items-center py-4 border-t border-gray-300">
+        <div className="flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-300">
           {footerLeft ? (
             <div className="text-gray-600 text-sm">{footerLeft}</div>
           ) : (
-            <div /> 
+            <div />
           )}
           <button
             onClick={onSave}

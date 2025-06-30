@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 /**
- * A popup component for adding a new payment card.
- *
  * @param {object} props
- * @param {boolean} props.isOpen - Controls the visibility of the popup.
- * @param {function} props.onClose - Function to close the popup.
- * @param {function} props.onSave - Function called with card details on save.
+ * @param {boolean} props.isOpen 
+ * @param {function} props.onClose 
+ * @param {function} props.onSave 
  */
 const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
   const [nameOnCard, setNameOnCard] = useState("");
@@ -16,9 +14,9 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
   const [cvc, setCvc] = useState("");
 
   const getCardIcon = (number) => {
-    if (number.startsWith("4")) return "💳"; // Visa
-    if (number.startsWith("5")) return "Ⓜ️"; // Mastercard
-    if (number.startsWith("34") || number.startsWith("37")) return "🏦"; // Amex
+    if (number.startsWith("4")) return "💳"; 
+    if (number.startsWith("5")) return "Ⓜ️"; 
+    if (number.startsWith("34") || number.startsWith("37")) return "🏦";
     return null;
   };
   const cardIcon = getCardIcon(cardNumber);
@@ -65,11 +63,8 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
             </svg>
           </button>
         </div>
-
-        {/* Body */}
         <div className="p-6 space-y-4">
           <div className="grid grid-cols-2 gap-6">
-            {/* Name on Card */}
             <div className="flex flex-col">
               <label
                 htmlFor="nameOnCard"
@@ -87,8 +82,6 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
                 onChange={(e) => setNameOnCard(e.target.value)}
               />
             </div>
-
-            {/* Card Number */}
             <div className="flex flex-col">
               <label
                 htmlFor="cardNumber"
@@ -114,9 +107,7 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
               </div>
             </div>
           </div>
-
           <div className="grid grid-cols-2 gap-6">
-            {/* Expiry */}
             <div className="flex flex-col">
               <label
                 htmlFor="expireDate"
@@ -134,8 +125,6 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
                 onChange={(e) => setExpireDate(e.target.value)}
               />
             </div>
-
-            {/* CVC */}
             <div className="flex flex-col">
               <label htmlFor="cvc" className="font-medium text-gray-800 mb-2">
                 CVC
@@ -159,8 +148,6 @@ const AddNewCardPopup = ({ isOpen, onClose, onSave }) => {
             </div>
           </div>
         </div>
-
-        {/* Footer */}
         <div className="flex justify-end p-4 border-t border-gray-200">
           <button
             onClick={handleSave}

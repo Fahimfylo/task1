@@ -1,9 +1,9 @@
-const PropertyTypeCard = ({ title, selected, onClick }) => {
+const PropertyTypeCard = ({ title, selected, onClick, img }) => {
   return (
     <div
       onClick={onClick}
       className={`
-        h-[96px] flex items-center justify-center p-5 rounded-lg cursor-pointer text-center select-none transition-all 
+        h-[96px] max-w-[410px] w-full flex items-center p-5 rounded-lg cursor-pointer select-none transition-all 
         border
         ${
           selected
@@ -11,11 +11,12 @@ const PropertyTypeCard = ({ title, selected, onClick }) => {
             : "border-gray-300 hover:border-blue-400"
         }
 
-        w-full            /* full width on small */
-        max-w-[410px]     /* max width 410px on medium+ */
+        w-full            
+        max-w-[410px]  
       `}
     >
-      <h3 className="text-lg font-medium">{title}</h3>
+      <img src={img} alt="" />
+      <h3 className="text-[16px] pl-2 font-medium">{title}</h3>
     </div>
   );
 };

@@ -5,8 +5,8 @@ const PageProgress = () => {
 
   const showProgress = [
     "/condominium-info",
-    "/choose-plan",
-    "/add-property-info",
+    "/condominium-summary",
+    "/chose-plan",
   ].includes(location.pathname);
 
   if (!showProgress) return null;

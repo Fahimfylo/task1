@@ -1,11 +1,9 @@
-import React from "react";
-
-const RoleCard = ({ title, selected, onClick }) => {
+const RoleCard = ({ title, selected, onClick, img }) => {
   return (
     <div
       onClick={onClick}
       className={`
-        h-[96px] flex items-center justify-center p-5 rounded-lg cursor-pointer text-center select-none transition-all 
+        h-[96px] flex items-center p-5 rounded-lg cursor-pointer text-center select-none transition-all 
         border
         ${
           selected
@@ -17,7 +15,8 @@ const RoleCard = ({ title, selected, onClick }) => {
         max-w-[410px]     /* max width 410px on medium+ */
       `}
     >
-      <h3 className="text-lg font-medium">{title}</h3>
+      <img src={img} alt="" />
+      <h3 className="text-[16px] pl-2 font-medium">{title}</h3>
     </div>
   );
 };

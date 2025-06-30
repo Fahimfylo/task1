@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
 
 import DatePicker from "react-datepicker";
@@ -53,8 +53,6 @@ const RentPopup = ({ isOpen, onClose }) => {
                   <option>Quarterly</option>
                   <option>Annually</option>
                 </select>
-
-                {/* Dropdown icon */}
                 <SlArrowDown
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-900 pointer-events-none"
                   size={15}
@@ -62,8 +60,6 @@ const RentPopup = ({ isOpen, onClose }) => {
               </div>
             </div>
           </div>
-
-          {/* Reminder Date */}
           <div className="flex flex-col">
             <label className="font-medium text-gray-800 text-[15px] mb-2">
               Rent Reminder/Statement date
@@ -100,8 +96,6 @@ const RentPopup = ({ isOpen, onClose }) => {
               />
             </div>
           </div>
-
-          {/* Due Date */}
           <div className="flex flex-col">
             <label className="font-medium text-gray-800 text-[15px] mb-2">
               Rent due date<span className="text-red-500">*</span>

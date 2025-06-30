@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
@@ -7,9 +7,8 @@ import Footer from "../components/layout/Footer";
 
 import Home from "../pages/Home";
 import CondominiumInfo from "../pages/CondominiumInfo";
-import CondoSummary from "../pages/CondoSummary"
-import AddPropertyInfo from "../pages/AddPropertyInfo";
-import ChoosePlan from "../pages/ChoosePlan";
+import CondoSummary from "../pages/CondoSummary";
+import ChosenPlan from "../pages/ChosenPlan";
 
 const AppRoutes = () => {
   const [hasPermission, setHasPermission] = useState(false);
@@ -31,8 +30,7 @@ const AppRoutes = () => {
             />
             <Route path="/condominium-info" element={<CondominiumInfo />} />
             <Route path="/condominium-summary" element={<CondoSummary />} />
-            <Route path="/add-property-info" element={<AddPropertyInfo />} />
-            <Route path="/choose-plan" element={<ChoosePlan />} />
+            <Route path="/choose-plan" element={<ChosenPlan />} />
           </Routes>
         </main>
         <Footer hasPermission={hasPermission} />

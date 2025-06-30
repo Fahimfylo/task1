@@ -15,9 +15,7 @@ import NearestStationPopup from "../components/Manageproperty/popups/NearestStat
 import NearestLandmarkPopup from "../components/Manageproperty/popups/NearestLandmarkPopup";
 import UtilitiesProviderPopup from "../components/Manageproperty/popups/UtilitiesProviderPopup";
 
-
 const CondoInformationForm = () => {
-  // States for controlling popup visibility
   const [showAddressPopup, setShowAddressPopup] = useState(false);
   const [showLeasingPopup, setShowLeasingPopup] = useState(false);
   const [showChargesPopup, setChargesPopup] = useState(false);
@@ -32,15 +30,10 @@ const CondoInformationForm = () => {
   const [showNearestLandmarkPopup, setNearestLandmarkPopup] = useState(false);
   const [showUtilitiesProviderPopup, setUtilitiesProviderPopup] =
     useState(false);
-
-  // Photos Upload
   const [coverPhoto, setCoverPhoto] = useState(null);
   const [morePhotos, setMorePhotos] = useState(Array(12).fill(null));
-
-  // Videos Upload
   const [showVideosSection, setShowVideosSection] = useState(false);
   const [propertyVideoFile, setPropertyVideoFile] = useState(null);
-
   const formFields = [
     { label: "Property address", note: "(Required)", key: "property_address" },
     { label: "Pet fees", note: "(Optional, add fees if you allow pet)" },
@@ -92,31 +85,26 @@ const CondoInformationForm = () => {
       setUtilitiesProviderPopup(true);
     }
   };
-
-  // Photo handler
   const handleCoverPhotoChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      setCoverPhoto(e.target.files[0].name); // Just storing name for now
+      setCoverPhoto(e.target.files[0].name); 
       console.log("Cover Photo:", e.target.files[0]);
     }
   };
-
   const handleMorePhotoChange = (index, e) => {
     if (e.target.files && e.target.files[0]) {
       const updatedPhotos = [...morePhotos];
-      updatedPhotos[index] = e.target.files[0].name; // Store name
+      updatedPhotos[index] = e.target.files[0].name; 
       setMorePhotos(updatedPhotos);
       console.log(`More Photo ${index + 1}:`, e.target.files[0]);
     }
   };
-
-  // Video handler
   const handleVideoFileChange = (setter, event) => {
     if (event.target.files && event.target.files[0]) {
-      setter(event.target.files[0].name); // Store just the file name
+      setter(event.target.files[0].name); 
       console.log("Selected video file:", event.target.files[0].name);
     } else {
-      setter(null); // Clear file name if no file selected
+      setter(null); 
     }
   };
 
@@ -154,9 +142,7 @@ const CondoInformationForm = () => {
           </div>
         ))}
       </div>
-
-      {/* Phptos layout */}
-      <div className="border border-gray-300 rounded-[14px]">
+      <div className="border mb-10 border-gray-300 rounded-[14px]">
         <h2 className="pt-6 pl-5 text-gray-700 pb-3 font-semibold">
           Property Gallery
           <span className="text-gray-500">(It's not unit photo)*</span>
@@ -168,14 +154,13 @@ const CondoInformationForm = () => {
             </h3>
 
             <div className="flex flex-col md:flex-row flex-wrap">
-              {/* Cover Photo */}
               <div
                 className="w-full md:w-[217px] h-[165px] border-2 border-dashed border-blue-500 rounded-xl flex flex-col items-center justify-center text-gray-500 text-sm cursor-pointer gap-2 bg-gray-50"
                 onClick={() =>
                   document.getElementById("coverPhotoUpload").click()
                 }
               >
-                <Upload className="w-8 h-8 text-black border-2 border-dashed border-blue-500 rounded-md p-1" />
+                <Upload className="w-8 h-8 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
                 Upload cover photo
                 <span className="text-[12px] text-gray-500">
                   (Jpg, png only)
@@ -193,9 +178,7 @@ const CondoInformationForm = () => {
                   </span>
                 )}
               </div>
-
-              {/* 4 boxes (2x2) with controlled gaps and responsive shrink */}
-              <div className="grid grid-cols-2 gap-y-3 lg:gap-x-2 md:gap-x-4 sm:gap-x-4 mt-4 md:mt-0 md:ml-4">
+              <div className="grid grid-cols-2 gap-y-3 gap-x-2 lg:gap-x-2 md:gap-x-4 sm:gap-x-4 mt-4 md:mt-0 md:ml-4">
                 {Array.from({ length: 4 }).map((_, i) => (
                   <div
                     key={i}
@@ -222,12 +205,11 @@ const CondoInformationForm = () => {
               </div>
             </div>
           </div>
-
           <div>
             <h3 className="font-medium text-gray-700 mb-3">
               More Photos <span className="text-gray-500">(optional)</span>
             </h3>
-            <div className="grid grid-cols-4 lg:gap-x-2 md:gap-x-4 sm:gap-x-4 gap-y-3">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-2 gap-y-3">
               {Array.from({ length: 8 }).map((_, i) => (
                 <div
                   key={i + 4}
@@ -245,7 +227,7 @@ const CondoInformationForm = () => {
                     onChange={(e) => handleMorePhotoChange(i + 4, e)}
                   />
                   {morePhotos[i + 4] && (
-                    <span className="absolute bottom-1 text-[10px] text-blue-600 truncate w-full text-center">
+                    <span className="absolute bottom-1 text-[10px] text-blue-600 truncate w-full text-center px-1">
                       {morePhotos[i + 4]}
                     </span>
                   )}
@@ -255,8 +237,6 @@ const CondoInformationForm = () => {
           </div>
         </div>
       </div>
-
-      {/* Videos layout */}
       <div className="border border-gray-300 rounded-[14px] overflow-hidden">
         <div
           className="w-full flex justify-between items-center bg-gray-100 px-5 py-4 cursor-pointer"
@@ -283,7 +263,6 @@ const CondoInformationForm = () => {
         >
           {showVideosSection && (
             <div className="grid w-[691px] grid-cols-1 sm:grid-cols-3 ml-6 mb-2">
-              {/* Property Video */}
               <div className="flex flex-col items-center w-[127px] justify-start text-gray-500 text-sm cursor-pointer gap-1">
                 <p className="font-medium text-gray-800 text-[15px] mb-2 ml-10 w-[185px] text-center">
                   Property Video
@@ -391,7 +370,6 @@ const CondoInformationForm = () => {
       <PropertyAddressPopup
         isOpen={showAddressPopup}
         onClose={() => setShowAddressPopup(false)}
-        // You would pass initialData and onSaveData props here if managing data
       />
       <LeasingInfoPopup
         isOpen={showLeasingPopup}

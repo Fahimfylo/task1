@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import PaymentCardPopup from "./PaymentCardPopup"; // adjust path as needed
+import { useState } from "react";
+import PaymentCardPopup from "./PaymentCardPopup"; 
 
 const ParentComponent = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [cards, setCards] = useState([]);
 
   const handleSave = (newCard) => {
-    setCards([...cards, newCard]); // add card to list or do what you want
-    setIsPopupOpen(false); // close popup on save
+    setCards([...cards, newCard]);
+    setIsPopupOpen(false); 
   };
 
   return (

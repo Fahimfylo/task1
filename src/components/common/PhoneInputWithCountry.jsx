@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SlArrowDown } from "react-icons/sl";
 
 const countries = [
@@ -39,7 +39,6 @@ const PhoneInputWithCountry = ({
       ref={dropdownRef}
       className={`relative flex items-center border border-gray-300 rounded-[15px] focus-within:ring-2 focus-within:ring-blue-500 ${className} h-[48px]`}
     >
-      {/* Flag dropdown */}
       <button
         type="button"
         aria-haspopup="listbox"
@@ -56,13 +55,9 @@ const PhoneInputWithCountry = ({
           size={12}
         />
       </button>
-
-      {/* Country code inside input field (prefix) */}
       <span className="absolute left-[5.2rem] text-sm text-gray-500 pointer-events-none">
         {selectedCountry.code}
       </span>
-
-      {/* Phone input */}
       <input
         id={inputId}
         type="tel"
@@ -70,8 +65,6 @@ const PhoneInputWithCountry = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
-
-      {/* Dropdown List */}
       {dropdownOpen && (
         <ul
           role="listbox"

@@ -1,46 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
-
-// React Icons imports (consolidated for App.jsx)
-import { FiSearch, FiUploadCloud } from "react-icons/fi";
+import { useState, useEffect } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { IoAdd } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoClose } from "react-icons/io5";
-import { FiPlus } from "react-icons/fi";
-
-import { GrCar } from "react-icons/gr";
-import {
-  MdOutlineAcUnit,
-  MdOutlineCable,
-  MdOutlineHeight,
-  MdOutlineBalcony,
-  MdOutlineKitchen,
-  MdOutlineForest,
-  MdOutlineWash,
-  MdOutlineBed,
-  MdOutlineFireplace,
-  MdOutlineMedicalServices,
-  MdOutlineSensorDoor,
-  MdOutlineLocalFireDepartment,
-  MdOutlineDeck,
-  MdOutlineLocalParking,
-} from "react-icons/md";
-import { SlCalender, SlArrowDown } from "react-icons/sl";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { Plus, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
-
-// React Datepicker imports
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
-// Toast notifications
-import toast from "react-hot-toast";
-
-// Dummy/Placeholder for ReusablePopup Component
-// IMPORTANT: REPLACE THIS WITH YOUR ACTUAL ReusablePopup.jsx CONTENT
 const ReusablePopup = ({
   isOpen,
   title,
@@ -89,8 +55,6 @@ const ReusablePopup = ({
     </div>
   );
 };
-
-// Dummy/Placeholder for PhoneInputWithCountry Component
 const PhoneInputWithCountry = ({ value, onChange, inputId, className }) => {
   const [countryCode, setCountryCode] = useState("+880");
   const [phoneNumber, setPhoneNumber] = useState(
@@ -138,8 +102,6 @@ const PhoneInputWithCountry = ({ value, onChange, inputId, className }) => {
     </div>
   );
 };
-
-// IMPORTANT: Adjust these paths to your actual component locations
 import PropertyAddressPopup from "../components/Manageproperty/popups/PropertyAddressPopup";
 import LeasingInfoPopup from "../components/Manageproperty/popups/LeasingInfoPopup";
 import ChargesPopup from "../components/Manageproperty/popups/ChargesPopup";
@@ -154,8 +116,7 @@ import NearestStationPopup from "../components/Manageproperty/popups/NearestStat
 import NearestLandmarkPopup from "../components/Manageproperty/popups/NearestLandmarkPopup";
 import UtilitiesProviderPopup from "../components/Manageproperty/popups/UtilitiesProviderPopup";
 
-const App = () => {
-  // Central state to hold all data from various popups
+const CondoSummary = () => {
   const [condoData, setCondoData] = useState({
     propertyAddress: {
       propertyName: "Dallas apartments complex",
@@ -181,8 +142,8 @@ const App = () => {
     },
     rentReminder: {
       paymentFrequency: "Monthly",
-      reminderDate: new Date().toISOString(), // Use ISO string for storage
-      dueDate: new Date().toISOString(), // Use ISO string for storage
+      reminderDate: new Date().toISOString(), 
+      dueDate: new Date().toISOString(), 
     },
     applicationAgreement: {
       agreementFileName: null,
@@ -227,31 +188,18 @@ const App = () => {
     propertyAerialVideo: null,
   });
 
-  // State to control which popup is open
   const [openPopup, setOpenPopup] = useState(null); // 'leasingInfo', 'charges', etc.
-
-  // State for the Videos section accordion
   const [showVideosSection, setShowVideosSection] = useState(false);
   const [propertyVideoFile, setPropertyVideoFile] = useState(null);
-  const [propertyVirtualTourFile, setPropertyVirtualTourFile] = useState(null);
-  const [propertyAerialVideoFile, setPropertyAerialVideoFile] = useState(null);
-
-  // State for Property Gallery Photos
   const [coverPhotoFile, setCoverPhotoFile] = useState(null); // For "Upload cover photo"
   const [morePhotos, setMorePhotos] = useState(Array(12).fill(null)); // Array to hold file names for "More Photos"
-
-  // State for photo
   const [coverPhoto, setCoverPhoto] = useState(null);
-
   const handleOpenPopup = (popupName) => {
     setOpenPopup(popupName);
   };
-
   const handleClosePopup = () => {
     setOpenPopup(null);
   };
-
-  // Generic function to update specific section data
   const handleSaveSectionData = (sectionName, data) => {
     setCondoData((prevData) => ({
       ...prevData,
@@ -259,7 +207,6 @@ const App = () => {
     }));
   };
 
-  // Helper function to render a data item with Edit/Add button
   const renderDataItem = (
     label,
     data,
@@ -284,7 +231,6 @@ const App = () => {
       </button>
     </div>
   );
-
   const handleVideoFileChange = (setter, event) => {
     if (event.target.files && event.target.files[0]) {
       setter(event.target.files[0].name); // Store just the file name
@@ -293,7 +239,6 @@ const App = () => {
       setter(null); // Clear file name if no file selected
     }
   };
-
   const handleCoverPhotoChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       setCoverPhotoFile(event.target.files[0].name);
@@ -301,7 +246,6 @@ const App = () => {
       setCoverPhotoFile(null);
     }
   };
-
   const handleMorePhotoChange = (index, event) => {
     if (event.target.files && event.target.files[0]) {
       const newMorePhotos = [...morePhotos];
@@ -313,7 +257,6 @@ const App = () => {
       setMorePhotos(newMorePhotos);
     }
   };
-
   const handleAmenityRemove = (indexToRemove) => {
     const updated = [...condoData.communityAmenities.selectedAmenities];
     updated.splice(indexToRemove, 1);
@@ -329,17 +272,14 @@ const App = () => {
   return (
     <div className="min-h-screen">
       <div className="max-w-[1280px] w-full mx-auto bg-white rounded-lg">
-        <h1 className="text-2xl text-gray-800 font-semibold mb-4 mt-1 pb-4">
+        <h1 className="py-[10px] text-[19px] font-semibold text-gray-800 mb-4 mt-1 pb-4">
           Condominiums Information
         </h1>
-
         <div className="flex flex-col xl:flex-row gap-6">
-          {/* Left Column */}
           <div className="flex flex-col w-full xl:w-[50%]">
-            {/* Keep your left side components here */}
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-[0] border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex pl-1 items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
+              <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
                   Property address
                   <span className="text-red-500 text-sm ml-1">(Required)</span>
                 </div>
@@ -361,30 +301,34 @@ const App = () => {
                 </button>
               </h2>
 
-              {condoData.propertyAddress ? (
-                <>
-                  <p className="text-gray-800 text-[15px] font-medium mt-16">
-                    {condoData.propertyAddress.propertyName}
-                    {condoData.propertyAddress.propertyWebsite &&
-                      `, ${condoData.propertyAddress.propertyWebsite}`}
-                    {condoData.propertyAddress.totalUnits &&
-                      `, Total unit: ${condoData.propertyAddress.totalUnits}`}
-                  </p>
-                  <p className="text-gray-800 text-[15px] font-medium">
-                    {condoData.propertyAddress.streetAddress}
-                    {condoData.propertyAddress.aptSuiteUnit &&
-                      `, Apt/Suite: ${condoData.propertyAddress.aptSuiteUnit}`}
-                    {`, ${condoData.propertyAddress.city}, ${condoData.propertyAddress.state} ${condoData.propertyAddress.zipCode}, ${condoData.propertyAddress.country}`}
-                  </p>
-                </>
-              ) : (
-                <p className="text-gray-500 text-sm italic">Not set</p>
-              )}
+              <div className="pt-20">
+                {" "}
+                {/* space for the absolutely positioned header */}
+                {condoData.propertyAddress ? (
+                  <>
+                    <p className="text-gray-800 text-[15px] font-medium">
+                      {condoData.propertyAddress.propertyName}
+                      {condoData.propertyAddress.propertyWebsite &&
+                        `, ${condoData.propertyAddress.propertyWebsite}`}
+                      {condoData.propertyAddress.totalUnits &&
+                        `, Total unit: ${condoData.propertyAddress.totalUnits}`}
+                    </p>
+                    <p className="text-gray-800 text-[15px] font-medium">
+                      {condoData.propertyAddress.streetAddress}
+                      {condoData.propertyAddress.aptSuiteUnit &&
+                        `, Apt/Suite: ${condoData.propertyAddress.aptSuiteUnit}`}
+                      {`, ${condoData.propertyAddress.city}, ${condoData.propertyAddress.state} ${condoData.propertyAddress.zipCode}, ${condoData.propertyAddress.country}`}
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-gray-500 text-sm italic">Not set</p>
+                )}
+              </div>
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-[0] border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex pl-1 items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
+              <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
                   Leasing info
                   <span className="text-red-500 text-sm ml-1">(Required)</span>
                 </div>
@@ -406,30 +350,32 @@ const App = () => {
                 </button>
               </h2>
 
-              {condoData.leasingInfo ? (
-                <>
-                  <p className="text-gray-800 text-[15px] font-medium mt-16">
-                    {condoData.leasingInfo.managerName}
-                    {condoData.leasingInfo.phone &&
-                      `, ${condoData.leasingInfo.phone}`}
-                    {condoData.leasingInfo.managerEmail &&
-                      `, ${condoData.leasingInfo.managerEmail}`}
-                  </p>
-                  <p className="text-gray-800 text-[15px] font-medium">
-                    Same as property address:{" "}
-                    <span className="font-semibold">
-                      {condoData.leasingInfo.sameAddress ? "Yes" : "No"}
-                    </span>
-                  </p>
-                </>
-              ) : (
-                <p className="text-gray-500 text-sm italic mt-16">Not set</p>
-              )}
+              <div className="pt-20">
+                {condoData.leasingInfo ? (
+                  <>
+                    <p className="text-gray-800 text-[15px] font-medium">
+                      {condoData.leasingInfo.managerName}
+                      {condoData.leasingInfo.phone &&
+                        `, ${condoData.leasingInfo.phone}`}
+                      {condoData.leasingInfo.managerEmail &&
+                        `, ${condoData.leasingInfo.managerEmail}`}
+                    </p>
+                    <p className="text-gray-800 text-[15px] font-medium">
+                      Same as property address:{" "}
+                      <span className="font-semibold">
+                        {condoData.leasingInfo.sameAddress ? "Yes" : "No"}
+                      </span>
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-gray-500 text-sm italic">Not set</p>
+                )}
+              </div>
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
+              <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
                   Charges
                   <span className="text-red-500 text-sm ml-1">(Required)</span>
                 </div>
@@ -451,25 +397,27 @@ const App = () => {
                 </button>
               </h2>
 
-              {condoData.charges ? (
-                <>
-                  <p className="text-gray-800 text-[15px] font-medium mt-16">
-                    Application fee : ${condoData.charges.applicationFee}
-                    {condoData.charges.applicantType &&
-                      ` (${condoData.charges.applicantType})`}
-                  </p>
-                  <p className="text-gray-800 text-[15px] font-medium">
-                    Admin fee : ${condoData.charges.adminFee}
-                  </p>
-                </>
-              ) : (
-                <p className="text-gray-500 text-sm italic mt-16">Not set</p>
-              )}
+              <div className="pt-20">
+                {condoData.charges ? (
+                  <>
+                    <p className="text-gray-800 text-[15px] font-medium">
+                      Application fee : ${condoData.charges.applicationFee}
+                      {condoData.charges.applicantType &&
+                        ` (${condoData.charges.applicantType})`}
+                    </p>
+                    <p className="text-gray-800 text-[15px] font-medium">
+                      Admin fee : ${condoData.charges.adminFee}
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-gray-500 text-sm italic">Not set</p>
+                )}
+              </div>
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] h-[180px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
+              <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
                   Rent frequency & payment reminder
                   <span className="text-red-500 text-sm ml-1">(Required)</span>
                 </div>
@@ -491,36 +439,38 @@ const App = () => {
                 </button>
               </h2>
 
-              {condoData.rentReminder ? (
-                <>
-                  <p className="text-gray-800 text-[15px] font-medium mt-16">
-                    Rent payment frequency :{" "}
-                    {condoData.rentReminder.paymentFrequency}
-                  </p>
-                  <p className="text-gray-800 text-[15px] font-medium">
-                    Rent reminder date :{" "}
-                    {condoData.rentReminder.reminderDate
-                      ? new Date(
-                          condoData.rentReminder.reminderDate
-                        ).toLocaleDateString()
-                      : "N/A"}
-                    <br />
-                    Rent due date :{" "}
-                    {condoData.rentReminder.dueDate
-                      ? new Date(
-                          condoData.rentReminder.dueDate
-                        ).toLocaleDateString()
-                      : "N/A"}
-                  </p>
-                </>
-              ) : (
-                <p className="text-gray-500 text-sm italic mt-16">Not set</p>
-              )}
+              <div className="pt-20">
+                {condoData.rentReminder ? (
+                  <>
+                    <p className="text-gray-800 text-[15px] font-medium">
+                      Rent payment frequency :{" "}
+                      {condoData.rentReminder.paymentFrequency}
+                    </p>
+                    <p className="text-gray-800 text-[15px] font-medium">
+                      Rent reminder date :{" "}
+                      {condoData.rentReminder.reminderDate
+                        ? new Date(
+                            condoData.rentReminder.reminderDate
+                          ).toLocaleDateString()
+                        : "N/A"}
+                      <br />
+                      Rent due date :{" "}
+                      {condoData.rentReminder.dueDate
+                        ? new Date(
+                            condoData.rentReminder.dueDate
+                          ).toLocaleDateString()
+                        : "N/A"}
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-gray-500 text-sm italic">Not set</p>
+                )}
+              </div>
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] h-[190px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
+              <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
                   Application agreement
                   <span className="text-gray-500 text-sm ml-1">(Optional)</span>
                 </div>
@@ -532,36 +482,40 @@ const App = () => {
                 </button>
               </h2>
 
-              {condoData.applicationAgreement ? (
-                <>
-                  <p className="text-gray-800 text-[15px] font-medium mt-16">
-                    Agreement :{" "}
-                    {condoData.applicationAgreement.agreementFileName ||
-                      "No file uploaded"}
-                  </p>
-                  {condoData.applicationAgreement
-                    .acceptImmigrantApplication && (
-                    <p className="text-gray-700 pt-2 text-[15px] font-normal">
-                      Accept immigrant & international student application
-                      <span className="flex gap-2 mt-4">
-                        {" "}
-                        <FaRegEdit className="text-base text-black" size={20} />
-                        <RiDeleteBin6Line
-                          className="text-base text-red-500 "
-                          size={20}
-                        />
-                      </span>
+              <div className="pt-20">
+                {condoData.applicationAgreement ? (
+                  <>
+                    <p className="text-gray-800 text-[15px] font-medium">
+                      Agreement :{" "}
+                      {condoData.applicationAgreement.agreementFileName ||
+                        "No file uploaded"}
                     </p>
-                  )}
-                </>
-              ) : (
-                <p className="text-gray-500 text-sm italic mt-16">Not set</p>
-              )}
+                    {condoData.applicationAgreement
+                      .acceptImmigrantApplication && (
+                      <p className="text-gray-700 pt-2 text-[15px] font-normal">
+                        Accept immigrant & international student application
+                        <span className="flex gap-2 mt-4">
+                          <FaRegEdit
+                            className="text-base cursor-pointer text-black"
+                            size={18}
+                          />
+                          <RiDeleteBin6Line
+                            className="text-base cursor-pointer text-red-500"
+                            size={18}
+                          />
+                        </span>
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-gray-500 text-sm italic">Not set</p>
+                )}
+              </div>
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] h-[190px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
+              <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
                   About the property
                   <span className="text-gray-500 text-sm ml-1">(Optional)</span>
                 </div>
@@ -573,26 +527,31 @@ const App = () => {
                 </button>
               </h2>
 
-              {condoData.aboutProperty ? (
-                <p className="text-gray-800 text-[15px] font-medium mt-16 leading-relaxed">
-                  {condoData.aboutProperty.message || "No description provided"}
-                  <span className="flex gap-2 mt-4">
-                    {" "}
-                    <FaRegEdit className="text-base text-black" size={20} />
-                    <RiDeleteBin6Line
-                      className="text-base text-red-500 "
-                      size={20}
-                    />
-                  </span>
-                </p>
-              ) : (
-                <p className="text-gray-500 text-sm italic mt-16">Not set</p>
-              )}
+              <div className="pt-20">
+                {condoData.aboutProperty ? (
+                  <p className="text-gray-800 text-[15px] font-medium leading-relaxed">
+                    {condoData.aboutProperty.message ||
+                      "No description provided"}
+                    <span className="flex gap-2 mt-4">
+                      <FaRegEdit
+                        className="text-base cursor-pointer text-black"
+                        size={18}
+                      />
+                      <RiDeleteBin6Line
+                        className="text-base cursor-pointer text-red-500"
+                        size={18}
+                      />
+                    </span>
+                  </p>
+                ) : (
+                  <p className="text-gray-500 text-sm italic">Not set</p>
+                )}
+              </div>
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] min-h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5">
+              <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
                   Community's amenity/features
                   <span className="text-gray-500 text-sm ml-1">(Optional)</span>
                 </div>
@@ -614,7 +573,7 @@ const App = () => {
                 </button>
               </h2>
 
-              <div className="mt-16 flex flex-wrap gap-3">
+              <div className="pt-20 flex flex-wrap gap-3">
                 {condoData.communityAmenities?.selectedAmenities?.length > 0 ? (
                   condoData.communityAmenities.selectedAmenities.map(
                     (item, index) => (
@@ -641,12 +600,10 @@ const App = () => {
             </div>
           </div>
 
-          {/* Right Column */}
           <div className="flex flex-col w-full xl:w-[50%]">
-            {/* Your right side components go here */}
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] min-h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5">
+              <h2 className="absolute top-0 py-4 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4 bg-white">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
                   Pet fees
                   <span className="text-gray-500 text-sm ml-1">
                     (Optional, add fees if you allow pet)
@@ -661,106 +618,115 @@ const App = () => {
                       <IoAdd className="text-base text-blue-700" size={20} />
                       <span className="underline text-[16px]">Add</span>
                     </>
-                  ) : (
-                    <></>
-                  )}
+                  ) : null}
                 </button>
               </h2>
 
               {condoData.petFees ? (
-                <div className="flex border-gray-400 border-b">
-                  <div className="mt-16 text-gray-800 flex flex-col w-[500px]  h-[65px] text-[15px] font-medium space-y-1">
-                    <div className="flex flex-row">
-                      <p className="pr-1">{condoData.petFees.petType} ,</p>
-                      <p>Max weight : {condoData.petFees.maxWeight} lb</p>
-                      <p>Monthly rent : ${condoData.petFees.monthlyRent}</p>
+                <div className="pt-20 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 border-b border-gray-300">
+                  <div className="text-gray-800 text-[15px] font-medium space-y-1 flex-1">
+                    <div className="flex flex-wrap gap-x-3">
+                      <p>{condoData.petFees.petType},</p>
+                      <p>Max weight: {condoData.petFees.maxWeight} lb</p>
+                      <p>Monthly rent: ${condoData.petFees.monthlyRent}</p>
                     </div>
-                    <div className="flex flex-row">
-                      <p>One time fee : ${condoData.petFees.oneTimeFee},</p>
+                    <div className="flex flex-wrap gap-x-3">
+                      <p>One time fee: ${condoData.petFees.oneTimeFee},</p>
                       <p>
-                        Security deposit : ${condoData.petFees.securityDeposit}
+                        Security deposit: ${condoData.petFees.securityDeposit}
                       </p>
                     </div>
                   </div>
-                  <span className="flex gap-2 mt-18 ml-8">
-                    {" "}
-                    <FaRegEdit className="text-base text-black" size={20} />
+                  <span className="flex gap-2">
+                    <FaRegEdit
+                      className="text-base cursor-pointer text-black"
+                      size={18}
+                    />
                     <RiDeleteBin6Line
-                      className="text-base text-red-500 "
-                      size={20}
+                      className="text-base cursor-pointer text-red-500"
+                      size={18}
                     />
                   </span>
                 </div>
               ) : (
-                <span className="flex gap-2 mt-4">
-                  {" "}
-                  <FaRegEdit className="text-base text-black" size={20} />
-                  <RiDeleteBin6Line
-                    className="text-base text-red-500 "
-                    size={20}
-                  />
-                </span>
+                <div className="pt-20 flex justify-end">
+                  <span className="flex gap-2">
+                    <FaRegEdit
+                      className="text-base cursor-pointer text-black"
+                      size={18}
+                    />
+                    <RiDeleteBin6Line
+                      className="text-base cursor-pointer text-red-500"
+                      size={18}
+                    />
+                  </span>
+                </div>
               )}
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] min-h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5 mx-auto">
+              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4">
+                <div className="flex items-center text-gray-800 text-[16px] sm:text-[18px]">
                   Parking
                   <span className="text-gray-500 text-sm ml-1">(Optional)</span>
                 </div>
                 <button
-                  className="px-3 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
+                  className="px-2 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
                   onClick={() => handleOpenPopup("parking")}
                 >
                   <IoAdd className="text-base text-blue-700" size={20} />
-                  <span className="underline text-[16px]">Add</span>
+                  <span className="underline text-[14px] sm:text-[16px]">
+                    Add
+                  </span>
                 </button>
               </h2>
 
               {condoData.parking ? (
-                <div className="flex border-gray-400 border-b">
-                  <div className="mt-16 text-gray-800 flex flex-col w-[500px] h-[85px] text-[15px] font-medium space-y-1">
-                    <p>Guest vehicle parking time : </p>
-                    <p>
-                      {condoData.parking.parkingOverview.length > 80
-                        ? condoData.parking.parkingOverview
-                        : condoData.parking.parkingOverview}
+                <div className="flex flex-col sm:flex-row border-b border-gray-400 pt-20 gap-4">
+                  <div className="text-gray-800 flex flex-col w-full sm:w-[500px] h-auto text-[14px] sm:text-[15px] font-medium space-y-1">
+                    <p>Guest vehicle parking time:</p>
+                    <p className="break-words">
+                      {condoData.parking.parkingOverview}
                     </p>
                   </div>
-                  <span className="flex gap-2 mt-18 ml-8">
-                    <FaRegEdit className="text-base text-black" size={20} />
+                  <span className="flex gap-3 items-start sm:items-center ml-1 sm:ml-8">
+                    <FaRegEdit
+                      className="cursor-pointer text-black"
+                      size={18}
+                    />
                     <RiDeleteBin6Line
-                      className="text-base text-red-500"
-                      size={20}
+                      className="cursor-pointer text-red-500"
+                      size={18}
                     />
                   </span>
                 </div>
               ) : (
-                <p className="text-gray-500 text-sm italic mt-16">Not set</p>
+                <p className="text-gray-500 text-sm italic mt-20">Not set</p>
               )}
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] min-h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5 mx-auto">
+              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4">
+                <div className="flex flex-wrap items-center text-gray-800 text-[16px] sm:text-[18px]">
                   Nearest educational institution
                   <span className="text-gray-500 text-sm ml-1">
                     (Optional but recommended)
                   </span>
                 </div>
                 <button
-                  className="px-3 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
+                  className="px-2 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
                   onClick={() =>
                     handleOpenPopup("nearestEducationalInstitution")
                   }
                 >
-                  <IoAdd className="text-base text-blue-700" size={20} />
-                  <span className="underline text-[16px]">Add</span>
+                  <IoAdd className="text-blue-700" size={20} />
+                  <span className="underline text-[14px] sm:text-[16px]">
+                    Add
+                  </span>
                 </button>
               </h2>
 
-              <div className="mt-16 space-y-3">
+              <div className="pt-20 space-y-3">
                 {[
                   {
                     type: "Elementary school",
@@ -780,16 +746,19 @@ const App = () => {
                 ].map((edu, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center border-b border-gray-300 pb-2"
+                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
                   >
-                    <p className="text-gray-800 text-[15px] font-medium">
+                    <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
                       {edu.type}, {edu.name}, {edu.distance}
                     </p>
-                    <span className="flex gap-2">
-                      <FaRegEdit className="text-base text-black" size={20} />
+                    <span className="flex gap-3">
+                      <FaRegEdit
+                        className="cursor-pointer text-black"
+                        size={18}
+                      />
                       <RiDeleteBin6Line
-                        className="text-base text-red-500"
-                        size={20}
+                        className="cursor-pointer text-red-500"
+                        size={18}
                       />
                     </span>
                   </div>
@@ -797,24 +766,26 @@ const App = () => {
               </div>
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] min-h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5 mx-auto">
+              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4">
+                <div className="flex flex-wrap items-center text-gray-800 text-[16px] sm:text-[18px]">
                   Nearest stations
                   <span className="text-gray-500 text-sm ml-1">
                     (Optional but recommended)
                   </span>
                 </div>
                 <button
-                  className="px-3 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
+                  className="px-2 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
                   onClick={() => handleOpenPopup("nearestStations")}
                 >
-                  <IoAdd className="text-base text-blue-700" size={20} />
-                  <span className="underline text-[16px]">Add</span>
+                  <IoAdd className="text-blue-700" size={20} />
+                  <span className="underline text-[14px] sm:text-[16px]">
+                    Add
+                  </span>
                 </button>
               </h2>
 
-              <div className="mt-16 space-y-3">
+              <div className="pt-20 space-y-3">
                 {[
                   { type: "Bus", name: "Stations name", distance: "2 mile" },
                   { type: "Train", name: "Stations name", distance: "2 mile" },
@@ -826,16 +797,19 @@ const App = () => {
                 ].map((station, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center border-b border-gray-300 pb-2"
+                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
                   >
-                    <p className="text-gray-800 text-[15px] font-medium">
+                    <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
                       {station.type}, {station.name}, {station.distance}
                     </p>
-                    <span className="flex gap-2">
-                      <FaRegEdit className="text-base text-black" size={20} />
+                    <span className="flex gap-3">
+                      <FaRegEdit
+                        className="cursor-pointer text-black"
+                        size={18}
+                      />
                       <RiDeleteBin6Line
-                        className="text-base text-red-500"
-                        size={20}
+                        className="cursor-pointer text-red-500"
+                        size={18}
                       />
                     </span>
                   </div>
@@ -843,24 +817,26 @@ const App = () => {
               </div>
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] min-h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5 mx-auto">
+              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4">
+                <div className="flex flex-wrap items-center text-gray-800 text-[16px] sm:text-[18px]">
                   Nearest landmark
                   <span className="text-gray-500 text-sm ml-1">
                     (Optional but recommended)
                   </span>
                 </div>
                 <button
-                  className="px-3 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
+                  className="px-2 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
                   onClick={() => handleOpenPopup("nearestLandmark")}
                 >
-                  <IoAdd className="text-base text-blue-700" size={20} />
-                  <span className="underline text-[16px]">Add</span>
+                  <IoAdd className="text-blue-700" size={20} />
+                  <span className="underline text-[14px] sm:text-[16px]">
+                    Add
+                  </span>
                 </button>
               </h2>
 
-              <div className="mt-16 space-y-3">
+              <div className="pt-20 space-y-3">
                 {[
                   {
                     type: "Museums",
@@ -872,16 +848,19 @@ const App = () => {
                 ].map((landmark, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center border-b border-gray-300 pb-2"
+                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
                   >
-                    <p className="text-gray-800 text-[15px] font-medium">
+                    <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
                       {landmark.type}, {landmark.name}, {landmark.distance}
                     </p>
-                    <span className="flex gap-2">
-                      <FaRegEdit className="text-base text-black" size={20} />
+                    <span className="flex gap-3">
+                      <FaRegEdit
+                        className="cursor-pointer text-black"
+                        size={18}
+                      />
                       <RiDeleteBin6Line
-                        className="text-base text-red-500"
-                        size={20}
+                        className="cursor-pointer text-red-500"
+                        size={18}
                       />
                     </span>
                   </div>
@@ -889,24 +868,26 @@ const App = () => {
               </div>
             </div>
 
-            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-[628px] min-h-[160px] p-5">
-              <h2 className="absolute top-0 py-4 left-0 border-b border-gray-300 w-[628px] rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 mb-4 flex items-center justify-between px-4">
-                <div className="flex items-center text-gray-800 text-[18px]">
+            <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5 mx-auto">
+              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4">
+                <div className="flex flex-wrap items-center text-gray-800 text-[16px] sm:text-[18px]">
                   Utilities provider
                   <span className="text-gray-500 text-sm ml-1">
                     (Optional but recommended)
                   </span>
                 </div>
                 <button
-                  className="px-3 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
+                  className="px-2 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
                   onClick={() => handleOpenPopup("utilitiesProvider")}
                 >
-                  <IoAdd className="text-base text-blue-700" size={20} />
-                  <span className="underline text-[16px]">Add</span>
+                  <IoAdd className="text-blue-700" size={20} />
+                  <span className="underline text-[14px] sm:text-[16px]">
+                    Add
+                  </span>
                 </button>
               </h2>
 
-              <div className="mt-16 space-y-3">
+              <div className="pt-20 space-y-3">
                 {[
                   { type: "Internet", name: "Utilities company name" },
                   { type: "Cable", name: "Utilities company name" },
@@ -914,16 +895,19 @@ const App = () => {
                 ].map((utility, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center border-b border-gray-300 pb-2"
+                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
                   >
-                    <p className="text-gray-800 text-[15px] font-medium">
+                    <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
                       {utility.type} - {utility.name}
                     </p>
-                    <span className="flex gap-2">
-                      <FaRegEdit className="text-base text-black" size={20} />
+                    <span className="flex gap-3">
+                      <FaRegEdit
+                        className="cursor-pointer text-black"
+                        size={18}
+                      />
                       <RiDeleteBin6Line
-                        className="text-base text-red-500"
-                        size={20}
+                        className="cursor-pointer text-red-500"
+                        size={18}
                       />
                     </span>
                   </div>
@@ -932,11 +916,9 @@ const App = () => {
             </div>
           </div>
         </div>
-
-        {/* photoes */}
         <div className="border border-gray-300 rounded-[14px] mb-10">
-          <h2 className="pt-6 pl-5 text-gray-700 pb-4 font-semibold">
-            Property Gallery{" "}
+          <h2 className="pt-6 pl-5 text-gray-700 pb-3 font-semibold">
+            Property Gallery
             <span className="text-gray-500">(It's not unit photo)*</span>
           </h2>
           <div className="p-5 border-t border-gray-300 space-y-6 flex flex-wrap gap-8">
@@ -946,18 +928,15 @@ const App = () => {
               </h3>
 
               <div className="flex flex-col md:flex-row flex-wrap">
-                {/* Cover Photo */}
                 <div
                   className="w-full md:w-[217px] h-[165px] border-2 border-dashed border-blue-500 rounded-xl flex flex-col items-center justify-center text-gray-500 text-sm cursor-pointer gap-2 bg-gray-50"
                   onClick={() =>
                     document.getElementById("coverPhotoUpload").click()
                   }
                 >
-                  <Upload className="w-8 h-8 font-semibold text-black border-2 border-dashed border-blue-500 rounded-md p-1" />
-                  <span className="font-medium text-gray-800">
-                    Upload cover photo
-                  </span>
-                  <span className="text-[12px] text-gray-600 font-medium">
+                  <Upload className="w-8 h-8 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
+                  Upload cover photo
+                  <span className="text-[12px] text-gray-500">
                     (Jpg, png only)
                   </span>
                   <input
@@ -973,9 +952,7 @@ const App = () => {
                     </span>
                   )}
                 </div>
-
-                {/* 4 boxes (2x2) with controlled gaps and responsive shrink */}
-                <div className="grid grid-cols-2 gap-y-3 lg:gap-x-2 md:gap-x-4 sm:gap-x-4 mt-4 md:mt-0 md:ml-4">
+                <div className="grid grid-cols-2 gap-y-3 gap-x-2 lg:gap-x-2 md:gap-x-4 sm:gap-x-4 mt-4 md:mt-0 md:ml-4">
                   {Array.from({ length: 4 }).map((_, i) => (
                     <div
                       key={i}
@@ -984,7 +961,7 @@ const App = () => {
                         document.getElementById(`featured-${i}`).click()
                       }
                     >
-                      <Upload className="w-7 h-7 text-black border-2 border-dashed border-blue-500 rounded-md p-1" />
+                      <Upload className="w-7 h-7 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
                       <input
                         type="file"
                         id={`featured-${i}`}
@@ -1002,12 +979,11 @@ const App = () => {
                 </div>
               </div>
             </div>
-
             <div>
               <h3 className="font-medium text-gray-700 mb-3">
                 More Photos <span className="text-gray-500">(optional)</span>
               </h3>
-              <div className="grid grid-cols-4 lg:gap-x-2 md:gap-x-4 sm:gap-x-4 gap-y-3">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-2 gap-y-3">
                 {Array.from({ length: 8 }).map((_, i) => (
                   <div
                     key={i + 4}
@@ -1016,7 +992,7 @@ const App = () => {
                       document.getElementById(`more-${i + 4}`).click()
                     }
                   >
-                    <Upload className="w-7 h-7 text-black border-2 border-dashed border-blue-500 rounded-md p-1" />
+                    <Upload className="w-7 h-7 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
                     <input
                       type="file"
                       id={`more-${i + 4}`}
@@ -1025,7 +1001,7 @@ const App = () => {
                       onChange={(e) => handleMorePhotoChange(i + 4, e)}
                     />
                     {morePhotos[i + 4] && (
-                      <span className="absolute bottom-1 text-[10px] text-blue-600 truncate w-full text-center">
+                      <span className="absolute bottom-1 text-[10px] text-blue-600 truncate w-full text-center px-1">
                         {morePhotos[i + 4]}
                       </span>
                     )}
@@ -1035,8 +1011,6 @@ const App = () => {
             </div>
           </div>
         </div>
-
-        {/* Integrated Videos Section */}
         <div className="border border-gray-300 rounded-[14px] overflow-hidden">
           <div
             className="w-full flex justify-between items-center bg-gray-100 px-5 py-4 cursor-pointer"
@@ -1063,7 +1037,6 @@ const App = () => {
           >
             {showVideosSection && (
               <div className="grid w-[691px] grid-cols-1 sm:grid-cols-3 ml-6 mb-2">
-                {/* Property Video */}
                 <div className="flex flex-col items-center w-[127px] justify-start text-gray-500 text-sm cursor-pointer gap-1">
                   <p className="font-medium text-gray-800 text-[15px] mb-2 ml-10 w-[185px] text-center">
                     Property Video
@@ -1167,8 +1140,6 @@ const App = () => {
             )}
           </div>
         </div>
-
-        {/* Popups (Conditionally rendered) */}
         <PropertyAddressPopup
           isOpen={openPopup === "propertyAddress"}
           onClose={handleClosePopup}
@@ -1280,4 +1251,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default CondoSummary;

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import ReusablePopup from "../../../components/common/ReusablePopup"; // Common path from your previous code
-import { SlArrowDown } from "react-icons/sl"; // Import SlArrowDown icon
+import { useState } from "react";
+import ReusablePopup from "../../../components/common/ReusablePopup";
+import { SlArrowDown } from "react-icons/sl";
 import toast from "react-hot-toast";
 
 const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
@@ -23,15 +23,15 @@ const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
       monthlyRent,
     });
     toast.success("Saved successfully!", {});
-    onClose(); // Close the popup after saving
+    onClose();
   };
 
   return (
     <ReusablePopup
       isOpen={isOpen}
-      title="Pet fees" // Title from screenshot
+      title="Pet fees"
       onClose={onClose}
-      onSave={handleSave} // Calls handleSave on "Add" button click
+      onSave={handleSave}
     >
       <div className="flex flex-col w-[780px] h-[234px] px-6 py-6 space-y-6 overflow-hidden">
         <div className="grid grid-cols-2 gap-6">
@@ -49,7 +49,7 @@ const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
                 value={petType}
                 onChange={(e) => setPetType(e.target.value)}
               >
-                <option value="">Select</option> {/* Placeholder "Select" */}
+                <option value="">Select</option>
                 <option value="Dog">Dog</option>
                 <option value="Cat">Cat</option>
                 <option value="Other">Other</option>
@@ -60,8 +60,6 @@ const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
               />
             </div>
           </div>
-
-          {/* Max weight(LB) */}
           <div className="flex flex-col">
             <label
               htmlFor="maxWeight"
@@ -72,18 +70,14 @@ const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
             <input
               type="number"
               id="maxWeight"
-              placeholder="100" // Placeholder from screenshot
+              placeholder="100"
               className="border text-[15px] border-gray-300 placeholder:text-gray-600 font-medium rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
               value={maxWeight}
               onChange={(e) => setMaxWeight(e.target.value)}
             />
           </div>
         </div>
-
-        {/* Second Row: One time pet fee, Pet Security Deposit, Monthly pet rent */}
-        {/* Using a 3-column grid for these */}
         <div className="grid grid-cols-3 gap-6">
-          {/* One time pet fee */}
           <div className="flex flex-col">
             <label
               htmlFor="oneTimeFee"
@@ -92,16 +86,14 @@ const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
               One time pet fee<span className="text-red-500">*</span>
             </label>
             <input
-              type="text" // Using text to allow '$' or numbers, can change to number if only numbers are strictly needed
+              type="text"
               id="oneTimeFee"
-              placeholder="$100" // Placeholder from screenshot
+              placeholder="$100"
               className="border text-[15px] border-gray-300 placeholder:text-gray-600 font-medium rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
               value={oneTimeFee}
               onChange={(e) => setOneTimeFee(e.target.value)}
             />
           </div>
-
-          {/* Pet Security Deposit */}
           <div className="flex flex-col">
             <label
               htmlFor="securityDeposit"
@@ -112,14 +104,12 @@ const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
             <input
               type="text"
               id="securityDeposit"
-              placeholder="$100" // Placeholder from screenshot
+              placeholder="$100"
               className="border text-[15px] border-gray-300 placeholder:text-gray-600 font-medium rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
               value={securityDeposit}
               onChange={(e) => setSecurityDeposit(e.target.value)}
             />
           </div>
-
-          {/* Monthly pet rent */}
           <div className="flex flex-col">
             <label
               htmlFor="monthlyRent"
@@ -130,7 +120,7 @@ const PetFeesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
             <input
               type="text"
               id="monthlyRent"
-              placeholder="$100" // Placeholder from screenshot
+              placeholder="$100"
               className="border text-[15px] border-gray-300 placeholder:text-gray-600 font-medium rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
               value={monthlyRent}
               onChange={(e) => setMonthlyRent(e.target.value)}

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import ReusablePopup from "../../../components/common/ReusablePopup"; // Common path from your previous code
+import ReusablePopup from "../../../components/common/ReusablePopup"; 
 
-import { SlArrowDown } from "react-icons/sl"; // Import SlArrowDown icon
+import { SlArrowDown } from "react-icons/sl"; 
 import toast from "react-hot-toast";
 
 const NearestStationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   const [stationType, setStationType] = useState(
     initialData?.stationType || ""
-  ); // Default from screenshot (Select)
+  ); 
   const [distance, setDistance] = useState(initialData?.distance || "");
   const [distanceUnit, setDistanceUnit] = useState(
     initialData?.distanceUnit || "Mile"
-  ); // Default from screenshot
+  ); 
   const [stationName, setStationName] = useState(
     initialData?.stationName || ""
   );
@@ -30,9 +30,9 @@ const NearestStationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   return (
     <ReusablePopup
       isOpen={isOpen}
-      title="Add nearest station" // Title from screenshot
+      title="Add nearest station" 
       onClose={onClose}
-      onSave={handleSave} // Calls handleSave on "Add" button click
+      onSave={handleSave} 
     >
       <div className="flex flex-col w-[780px] px-6 py-6 space-y-4">
         <div className="grid grid-cols-2 gap-6">
@@ -75,7 +75,7 @@ const NearestStationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
               <input
                 type="number"
                 id="distance"
-                placeholder="1.5" // Placeholder from screenshot
+                placeholder="1.5" 
                 className="px-4 text-[15px] font-medium w-full flex-1 outline-none bg-transparent"
                 value={distance}
                 onChange={(e) => setDistance(e.target.value)}
@@ -98,8 +98,6 @@ const NearestStationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
             </div>
           </div>
         </div>
-
-        {/* Nearest station name */}
         <div className="flex flex-col">
           <label
             htmlFor="stationName"
@@ -110,7 +108,7 @@ const NearestStationPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
           <input
             type="text"
             id="stationName"
-            placeholder="Enter name" // Placeholder from screenshot
+            placeholder="Enter name" 
             className="border text-[15px] font-medium border-gray-300 placeholder:text-gray-600 rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
             value={stationName}
             onChange={(e) => setStationName(e.target.value)}

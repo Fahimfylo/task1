@@ -1,16 +1,7 @@
-import React, { useState } from "react";
-// IMPORTANT: Please adjust the path to ReusablePopup based on its actual location in your project.
-// If you encounter "Could not resolve" errors, carefully check your file structure.
-import ReusablePopup from "../../../components/common/ReusablePopup"; // Common path from your previous code
-
-// IMPORTANT: react-icons is an external library.
-// If you are running this code in your own environment,
-// you need to install it via npm or yarn:
-// npm install react-icons
-// or
-// yarn add react-icons
-import { SlArrowDown } from "react-icons/sl"; // Import SlArrowDown icon
-import { HiOutlineExclamationCircle } from "react-icons/hi"; // For the exclamation icon in the footer
+import { useState } from "react";
+import ReusablePopup from "../../../components/common/ReusablePopup";
+import { SlArrowDown } from "react-icons/sl";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 import toast from "react-hot-toast";
 
 const ChargesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
@@ -28,8 +19,7 @@ const ChargesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
       applicantType,
       adminFee,
     });
-    toast.success("Saved successfully!", {
-    });
+    toast.success("Saved successfully!", {});
     onClose();
   };
 
@@ -53,7 +43,7 @@ const ChargesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
           <div className="flex flex-col">
             <label
               htmlFor="applicationFee"
-              className="font-medium text-gray-800 text-[15px] mb-4" // Adjusted mb-2 to mb-4 based on provided code
+              className="font-medium text-gray-800 text-[15px] mb-4"
             >
               Application fee (one-time)
               <span className="text-red-500">*</span>
@@ -86,12 +76,10 @@ const ChargesPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
               </div>
             </div>
           </div>
-
-          {/* Admin Fee */}
           <div className="flex flex-col">
             <label
               htmlFor="adminFee"
-              className="font-medium text-gray-800 text-[15px] mb-4" // Adjusted mb-2 to mb-4 based on provided code
+              className="font-medium text-gray-800 text-[15px] mb-4"
             >
               Admin fee (one-time)
               <span className="text-red-500">*</span>

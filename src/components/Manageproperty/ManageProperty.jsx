@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PropertyAddressPopup from "./popups/PropertyAddressPopup";
 import LeasingInfoPopup from "./popups/LeasingInfoPopup";
 import ChargesPopup from "./popups/ChargesPopup";
@@ -34,7 +34,6 @@ const ManageProperty = () => {
     { key: "utilites", label: "utilites" },
     { key: "payment", label: "payment" },
   ];
-
   const popupComponents = {
     propertyAddress: PropertyAddressPopup,
     leasingInfo: LeasingInfoPopup,
@@ -51,7 +50,6 @@ const ManageProperty = () => {
     utilites: UtilitiesProviderPopup,
     payment: PaymentPopup,
   };
-
   const PopupComponent = openPopup ? popupComponents[openPopup] : null;
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
 import { FiSearch } from "react-icons/fi";
 import { FaFan } from "react-icons/fa6";
@@ -69,7 +69,6 @@ const CommunityPopup = ({ isOpen, onClose }) => {
       onSave={handleSave}
     >
       <div className="flex flex-col justify-center pt-5 pb-1 px-6">
-        {/* Search Input */}
         <div className="relative mb-6">
           <input
             type="text"
@@ -83,8 +82,6 @@ const CommunityPopup = ({ isOpen, onClose }) => {
             size={20}
           />
         </div>
-
-        {/* Amenities Grid */}
         <div className="grid grid-cols-3 h-[370px] gap-3 overflow-y-auto max-h-[300px] pb-4">
           {filteredAmenities.map((amenity) => {
             const IconComponent = amenityIcons[amenity];

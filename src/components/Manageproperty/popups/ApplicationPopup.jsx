@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup"; 
 import toast from "react-hot-toast";
 
@@ -12,7 +12,6 @@ const ApplicationAgreementPopup = ({ isOpen, onClose }) => {
       console.log("Selected file:", event.target.files[0].name);
     }
   };
-
   const handleSave = () => {
     toast.success("Saved successfully!", {
     });
@@ -26,14 +25,14 @@ const ApplicationAgreementPopup = ({ isOpen, onClose }) => {
       onClose={onClose}
       onSave={handleSave} 
     >
-      <div className="flex flex-col justify-center w-[780px] h-[180px] px-6 py-6 space-y-4 overflow-hidden"> {/* Added h-[294px] and overflow-hidden */}
+      <div className="flex flex-col justify-center w-[780px] h-[180px] px-6 py-6 space-y-4 overflow-hidden"> 
         <div className="flex flex-col">
           <label htmlFor="uploadAgreement" className="font-medium text-gray-800 text-[15px] mb-4">
             Upload agreement
           </label>
           <div
             className="relative bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-6 cursor-pointer hover:border-blue-500 transition-colors duration-200 h-[48px] w-[732px]" // Adjusted w-[748px] to w-[732px] for proper fit within px-6 parent
-            onClick={() => document.getElementById('fileUpload').click()} // Trigger hidden input click
+            onClick={() => document.getElementById('fileUpload').click()} 
           >
             <input
               type="file"
@@ -50,8 +49,6 @@ const ApplicationAgreementPopup = ({ isOpen, onClose }) => {
             </div>
           </div>
         </div>
-
-        {/* Checkbox for Acceptance */}
         <div className="flex items-center">
           <input
             type="checkbox"

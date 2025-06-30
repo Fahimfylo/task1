@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup"; // Common path from your previous code
 
 import { SlArrowDown } from "react-icons/sl"; // Import SlArrowDown icon
@@ -12,7 +12,7 @@ const UtilitiesProviderPopup = ({
 }) => {
   const [utilityType, setUtilityType] = useState(
     initialData?.utilityType || ""
-  ); // Default from screenshot (Select)
+  ); 
   const [providerCompanyName, setProviderCompanyName] = useState(
     initialData?.providerCompanyName || ""
   );
@@ -23,15 +23,15 @@ const UtilitiesProviderPopup = ({
       providerCompanyName,
     });
     toast.success("Saved successfully!", {});
-    onClose(); // Close the popup after saving
+    onClose(); 
   };
 
   return (
     <ReusablePopup
       isOpen={isOpen}
-      title="Utilities provider" // Title from screenshot
+      title="Utilities provider" 
       onClose={onClose}
-      onSave={handleSave} // Calls handleSave on "Add" button click
+      onSave={handleSave} 
     >
       <div className="flex flex-col w-[780px] px-6 py-6 space-y-4">
         <div className="grid grid-cols-2 gap-6">
@@ -62,8 +62,6 @@ const UtilitiesProviderPopup = ({
               />
             </div>
           </div>
-
-          {/* Provider company name */}
           <div className="flex flex-col">
             <label
               htmlFor="providerCompanyName"
@@ -74,7 +72,7 @@ const UtilitiesProviderPopup = ({
             <input
               type="text"
               id="providerCompanyName"
-              placeholder="Enter name" // Placeholder from screenshot
+              placeholder="Enter name" 
               className="border text-[15px] font-medium border-gray-300 placeholder:text-gray-600 rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
               value={providerCompanyName}
               onChange={(e) => setProviderCompanyName(e.target.value)}

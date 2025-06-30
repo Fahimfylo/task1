@@ -1,14 +1,12 @@
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const BackButton = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const routeOrder = ["/", "/condominium-info", "/add-property-info", "/choose-plan"];
+  const routeOrder = ["/", "/condominium-info", "/choose-plan"];
   const currentIndex = routeOrder.indexOf(location.pathname);
 
-  if (currentIndex === 0) return null; // Don't show on first page
+  if (currentIndex === 0) return null; 
 
   return (
     <button
