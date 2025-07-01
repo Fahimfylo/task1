@@ -115,6 +115,8 @@ import EducationPopup from "../components/Manageproperty/popups/EducationPopup";
 import NearestStationPopup from "../components/Manageproperty/popups/NearestStationPopup";
 import NearestLandmarkPopup from "../components/Manageproperty/popups/NearestLandmarkPopup";
 import UtilitiesProviderPopup from "../components/Manageproperty/popups/UtilitiesProviderPopup";
+import toast from "react-hot-toast";
+import ApplicationAgreementPopup from "../components/Manageproperty/popups/ApplicationPopup";
 
 const CondoSummary = () => {
   const [condoData, setCondoData] = useState({
@@ -142,8 +144,8 @@ const CondoSummary = () => {
     },
     rentReminder: {
       paymentFrequency: "Monthly",
-      reminderDate: new Date().toISOString(), 
-      dueDate: new Date().toISOString(), 
+      reminderDate: new Date().toISOString(),
+      dueDate: new Date().toISOString(),
     },
     applicationAgreement: {
       agreementFileName: null,
@@ -174,25 +176,45 @@ const CondoSummary = () => {
     },
     parking: {
       parkingTime: "2H",
-      parkingOverview:
-        "Guest vehicle parking allowed for 2 hours. Safe and convenient parking with easy access nearby.",
+      parkingOverview: "Secure on-site parking available for up to 2 hours",
     },
-    nearestEducationalInstitution: [],
-    nearestStations: [],
-    nearestLandmark: [],
-    utilitiesProvider: [],
-    featuredPhotos: [],
-    morePhotos: [],
-    propertyVideo: null,
-    propertyVirtualTour: null,
-    propertyAerialVideo: null,
+    nearestEducationalInstitution: [
+      {
+        institutionType: "Elementary School",
+        institutionName: "Greenwood Elementary",
+        distance: "1.2",
+        distanceUnit: "miles",
+      },
+    ],
+    nearestStations: [
+      {
+        stationType: "Bus",
+        stationName: "Central Bus Stop",
+        distance: "2",
+        distanceUnit: "mile",
+      },
+    ],
+    nearestLandmark: [
+      {
+        landmarkType: "Museums",
+        landmarkName: "National History Museum",
+        distance: "2",
+        distanceUnit: "mile",
+      },
+    ],
+    utilitiesProvider: [
+      {
+        type: "Internet",
+        name: "Comcast Xfinity",
+      },
+    ],
   });
 
-  const [openPopup, setOpenPopup] = useState(null); // 'leasingInfo', 'charges', etc.
+  const [openPopup, setOpenPopup] = useState(null);
   const [showVideosSection, setShowVideosSection] = useState(false);
   const [propertyVideoFile, setPropertyVideoFile] = useState(null);
-  const [coverPhotoFile, setCoverPhotoFile] = useState(null); // For "Upload cover photo"
-  const [morePhotos, setMorePhotos] = useState(Array(12).fill(null)); // Array to hold file names for "More Photos"
+  const [coverPhotoFile, setCoverPhotoFile] = useState(null);
+  const [morePhotos, setMorePhotos] = useState(Array(12).fill(null));
   const [coverPhoto, setCoverPhoto] = useState(null);
   const handleOpenPopup = (popupName) => {
     setOpenPopup(popupName);
@@ -233,10 +255,10 @@ const CondoSummary = () => {
   );
   const handleVideoFileChange = (setter, event) => {
     if (event.target.files && event.target.files[0]) {
-      setter(event.target.files[0].name); // Store just the file name
+      setter(event.target.files[0].name); 
       console.log("Selected video file:", event.target.files[0].name);
     } else {
-      setter(null); // Clear file name if no file selected
+      setter(null); 
     }
   };
   const handleCoverPhotoChange = (event) => {
@@ -279,7 +301,7 @@ const CondoSummary = () => {
           <div className="flex flex-col w-full xl:w-[50%]">
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
               <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
-                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[17px]">
                   Property address
                   <span className="text-red-500 text-sm ml-1">(Required)</span>
                 </div>
@@ -300,10 +322,8 @@ const CondoSummary = () => {
                   )}
                 </button>
               </h2>
-
-              <div className="pt-20">
+              <div className="pt-15">
                 {" "}
-                {/* space for the absolutely positioned header */}
                 {condoData.propertyAddress ? (
                   <>
                     <p className="text-gray-800 text-[15px] font-medium">
@@ -328,7 +348,7 @@ const CondoSummary = () => {
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
               <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
-                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[17px]">
                   Leasing info
                   <span className="text-red-500 text-sm ml-1">(Required)</span>
                 </div>
@@ -350,7 +370,7 @@ const CondoSummary = () => {
                 </button>
               </h2>
 
-              <div className="pt-20">
+              <div className="pt-15">
                 {condoData.leasingInfo ? (
                   <>
                     <p className="text-gray-800 text-[15px] font-medium">
@@ -375,7 +395,7 @@ const CondoSummary = () => {
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
               <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
-                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[17px]">
                   Charges
                   <span className="text-red-500 text-sm ml-1">(Required)</span>
                 </div>
@@ -397,7 +417,7 @@ const CondoSummary = () => {
                 </button>
               </h2>
 
-              <div className="pt-20">
+              <div className="pt-15">
                 {condoData.charges ? (
                   <>
                     <p className="text-gray-800 text-[15px] font-medium">
@@ -417,7 +437,7 @@ const CondoSummary = () => {
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
               <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
-                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[17px]">
                   Rent frequency & payment reminder
                   <span className="text-red-500 text-sm ml-1">(Required)</span>
                 </div>
@@ -439,7 +459,7 @@ const CondoSummary = () => {
                 </button>
               </h2>
 
-              <div className="pt-20">
+              <div className="pt-15">
                 {condoData.rentReminder ? (
                   <>
                     <p className="text-gray-800 text-[15px] font-medium">
@@ -470,7 +490,7 @@ const CondoSummary = () => {
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
               <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
-                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[17px]">
                   Application agreement
                   <span className="text-gray-500 text-sm ml-1">(Optional)</span>
                 </div>
@@ -481,8 +501,7 @@ const CondoSummary = () => {
                   {condoData.applicationAgreement ? <></> : <></>}
                 </button>
               </h2>
-
-              <div className="pt-20">
+              <div className="pt-15">
                 {condoData.applicationAgreement ? (
                   <>
                     <p className="text-gray-800 text-[15px] font-medium">
@@ -498,10 +517,26 @@ const CondoSummary = () => {
                           <FaRegEdit
                             className="text-base cursor-pointer text-black"
                             size={18}
+                            onClick={() =>
+                              handleOpenPopup("applicationAgreement")
+                            }
                           />
                           <RiDeleteBin6Line
                             className="text-base cursor-pointer text-red-500"
                             size={18}
+                            onClick={() => {
+                              if (
+                                window.confirm(
+                                  "Are you sure you want to delete this agreement?"
+                                )
+                              ) {
+                                setCondoData((prev) => ({
+                                  ...prev,
+                                  applicationAgreement: null,
+                                }));
+                                toast.success("Application agreement removed.");
+                              }
+                            }}
                           />
                         </span>
                       </p>
@@ -515,7 +550,7 @@ const CondoSummary = () => {
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] p-4 sm:p-5">
               <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
-                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[17px]">
                   About the property
                   <span className="text-gray-500 text-sm ml-1">(Optional)</span>
                 </div>
@@ -527,7 +562,7 @@ const CondoSummary = () => {
                 </button>
               </h2>
 
-              <div className="pt-20">
+              <div className="pt-15">
                 {condoData.aboutProperty ? (
                   <p className="text-gray-800 text-[15px] font-medium leading-relaxed">
                     {condoData.aboutProperty.message ||
@@ -536,10 +571,26 @@ const CondoSummary = () => {
                       <FaRegEdit
                         className="text-base cursor-pointer text-black"
                         size={18}
+                        onClick={() => handleOpenPopup("aboutProperty")}
                       />
                       <RiDeleteBin6Line
                         className="text-base cursor-pointer text-red-500"
                         size={18}
+                        onClick={() => {
+                          if (
+                            window.confirm(
+                              "Are you sure you want to delete the about property description?"
+                            )
+                          ) {
+                            setCondoData((prev) => ({
+                              ...prev,
+                              aboutProperty: null,
+                            }));
+                            toast.success(
+                              "About property description removed."
+                            );
+                          }
+                        }}
                       />
                     </span>
                   </p>
@@ -551,7 +602,7 @@ const CondoSummary = () => {
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5">
               <h2 className="absolute top-0 left-0 w-full border-b border-gray-300 rounded-t-[20px] rounded-b-none text-lg font-semibold text-gray-800 py-4 px-4 flex items-center justify-between bg-white">
-                <div className="flex items-center text-gray-800 text-[17px] sm:text-[18px]">
+                <div className="flex items-center text-gray-800 text-[17px] sm:text-[17px]">
                   Community's amenity/features
                   <span className="text-gray-500 text-sm ml-1">(Optional)</span>
                 </div>
@@ -609,63 +660,67 @@ const CondoSummary = () => {
                     (Optional, add fees if you allow pet)
                   </span>
                 </div>
+
                 <button
                   className="px-3 py-1 text-sm rounded-lg cursor-pointer text-blue-700 flex items-center gap-1"
                   onClick={() => handleOpenPopup("petFees")}
                 >
-                  {condoData.petFees ? (
-                    <>
-                      <IoAdd className="text-base text-blue-700" size={20} />
-                      <span className="underline text-[16px]">Add</span>
-                    </>
-                  ) : null}
+                  <IoAdd className="text-base text-blue-700" size={20} />
+                  <span className="underline text-[16px]">
+                    {condoData.petFees ? "Add" : "Add"}
+                  </span>
                 </button>
               </h2>
 
               {condoData.petFees ? (
                 <div className="pt-20 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 border-b border-gray-300">
-                  <div className="text-gray-800 text-[15px] font-medium space-y-1 flex-1">
-                    <div className="flex flex-wrap gap-x-3">
-                      <p>{condoData.petFees.petType},</p>
-                      <p>Max weight: {condoData.petFees.maxWeight} lb</p>
-                      <p>Monthly rent: ${condoData.petFees.monthlyRent}</p>
+                  <div className="text-gray-800 text-[15px] pb-4 font-medium space-y-1 flex-1">
+                    <div className="flex flex-wrap gap-x-1">
+                      <p>{condoData.petFees.petType} ,</p>
+                      <p>Max weight : {condoData.petFees.maxWeight} lb</p>
+                      <p>Monthly rent : ${condoData.petFees.monthlyRent}</p>
                     </div>
                     <div className="flex flex-wrap gap-x-3">
-                      <p>One time fee: ${condoData.petFees.oneTimeFee},</p>
+                      <p>One time fee : ${condoData.petFees.oneTimeFee},</p>
                       <p>
-                        Security deposit: ${condoData.petFees.securityDeposit}
+                        Security deposit : ${condoData.petFees.securityDeposit}
                       </p>
                     </div>
                   </div>
                   <span className="flex gap-2">
                     <FaRegEdit
-                      className="text-base cursor-pointer text-black"
+                      className="text-base cursor-pointer"
                       size={18}
+                      onClick={() => handleOpenPopup("petFees")}
                     />
                     <RiDeleteBin6Line
                       className="text-base cursor-pointer text-red-500"
                       size={18}
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Are you sure you want to delete the pet fees information?"
+                          )
+                        ) {
+                          setCondoData((prev) => ({
+                            ...prev,
+                            petFees: null,
+                          }));
+                          toast.success("Pet fees removed.");
+                        }
+                      }}
                     />
                   </span>
                 </div>
               ) : (
-                <div className="pt-20 flex justify-end">
-                  <span className="flex gap-2">
-                    <FaRegEdit
-                      className="text-base cursor-pointer text-black"
-                      size={18}
-                    />
-                    <RiDeleteBin6Line
-                      className="text-base cursor-pointer text-red-500"
-                      size={18}
-                    />
-                  </span>
-                </div>
+                <p className="pt-20 text-gray-500 italic text-sm">
+                  No pet fees added yet.
+                </p>
               )}
             </div>
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5 mx-auto">
-              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4">
+              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4 bg-white">
                 <div className="flex items-center text-gray-800 text-[16px] sm:text-[18px]">
                   Parking
                   <span className="text-gray-500 text-sm ml-1">(Optional)</span>
@@ -682,31 +737,48 @@ const CondoSummary = () => {
               </h2>
 
               {condoData.parking ? (
-                <div className="flex flex-col sm:flex-row border-b border-gray-400 pt-20 gap-4">
-                  <div className="text-gray-800 flex flex-col w-full sm:w-[500px] h-auto text-[14px] sm:text-[15px] font-medium space-y-1">
-                    <p>Guest vehicle parking time:</p>
+                <div className="pt-20 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 border-b border-gray-300">
+                  <div className="text-gray-800 text-[15px] pb-4 font-medium space-y-1 flex-1">
+                    <p>
+                      Guest vehicle parking time :{" "}
+                      {condoData.parking.parkingTime}
+                    </p>
                     <p className="break-words">
                       {condoData.parking.parkingOverview}
                     </p>
                   </div>
-                  <span className="flex gap-3 items-start sm:items-center ml-1 sm:ml-8">
+                  <span className="flex gap-2">
                     <FaRegEdit
-                      className="cursor-pointer text-black"
+                      className="text-base cursor-pointer"
                       size={18}
+                      onClick={() => handleOpenPopup("parking")}
                     />
                     <RiDeleteBin6Line
-                      className="cursor-pointer text-red-500"
+                      className="text-base cursor-pointer text-red-500"
                       size={18}
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Are you sure you want to delete the parking information?"
+                          )
+                        ) {
+                          setCondoData((prev) => ({
+                            ...prev,
+                            parking: null,
+                          }));
+                          toast.success("Parking information removed.");
+                        }
+                      }}
                     />
                   </span>
                 </div>
               ) : (
-                <p className="text-gray-500 text-sm italic mt-20">Not set</p>
+                <p className="pt-20 text-gray-500 italic text-sm">Not set</p>
               )}
             </div>
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5 mx-auto">
-              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4">
+              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4 bg-white">
                 <div className="flex flex-wrap items-center text-gray-800 text-[16px] sm:text-[18px]">
                   Nearest educational institution
                   <span className="text-gray-500 text-sm ml-1">
@@ -727,47 +799,67 @@ const CondoSummary = () => {
               </h2>
 
               <div className="pt-20 space-y-3">
-                {[
-                  {
-                    type: "Elementary school",
-                    name: "Institution name",
-                    distance: "2 mile",
-                  },
-                  {
-                    type: "High school",
-                    name: "Institution name",
-                    distance: "2 mile",
-                  },
-                  {
-                    type: "Elementary school",
-                    name: "Institution name",
-                    distance: "2 mile",
-                  },
-                ].map((edu, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
-                  >
-                    <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
-                      {edu.type}, {edu.name}, {edu.distance}
-                    </p>
-                    <span className="flex gap-3">
-                      <FaRegEdit
-                        className="cursor-pointer text-black"
-                        size={18}
-                      />
-                      <RiDeleteBin6Line
-                        className="cursor-pointer text-red-500"
-                        size={18}
-                      />
-                    </span>
-                  </div>
-                ))}
+                {condoData.nearestEducationalInstitution?.length > 0 ? (
+                  condoData.nearestEducationalInstitution.map((edu, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
+                    >
+                      <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
+                        <span>{edu.institutionType}</span>, &nbsp;
+                        <span>{edu.institutionName}</span>, &nbsp;
+                        <span>
+                          {edu.distance}
+                          {edu.distanceUnit}
+                        </span>
+                      </p>
+                      <span className="flex gap-3">
+                        <FaRegEdit
+                          className="cursor-pointer text-black"
+                          size={18}
+                          onClick={() =>
+                            handleOpenPopup(
+                              "nearestEducationalInstitution",
+                              index
+                            )
+                          }
+                          title="Edit institution"
+                        />
+                        <RiDeleteBin6Line
+                          className="cursor-pointer text-red-500"
+                          size={18}
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to remove this institution?"
+                              )
+                            ) {
+                              const updated =
+                                condoData.nearestEducationalInstitution.filter(
+                                  (_, i) => i !== index
+                                );
+                              setCondoData((prev) => ({
+                                ...prev,
+                                nearestEducationalInstitution: updated,
+                              }));
+                              toast.success("Institution removed.");
+                            }
+                          }}
+                          title="Delete institution"
+                        />
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500 text-sm italic">
+                    No institutions added yet.
+                  </p>
+                )}
               </div>
             </div>
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5 mx-auto">
-              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4">
+              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4 bg-white">
                 <div className="flex flex-wrap items-center text-gray-800 text-[16px] sm:text-[18px]">
                   Nearest stations
                   <span className="text-gray-500 text-sm ml-1">
@@ -786,39 +878,64 @@ const CondoSummary = () => {
               </h2>
 
               <div className="pt-20 space-y-3">
-                {[
-                  { type: "Bus", name: "Stations name", distance: "2 mile" },
-                  { type: "Train", name: "Stations name", distance: "2 mile" },
-                  {
-                    type: "Airport",
-                    name: "Stations name",
-                    distance: "2 mile",
-                  },
-                ].map((station, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
-                  >
-                    <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
-                      {station.type}, {station.name}, {station.distance}
-                    </p>
-                    <span className="flex gap-3">
-                      <FaRegEdit
-                        className="cursor-pointer text-black"
-                        size={18}
-                      />
-                      <RiDeleteBin6Line
-                        className="cursor-pointer text-red-500"
-                        size={18}
-                      />
-                    </span>
-                  </div>
-                ))}
+                {condoData.nearestStations?.length > 0 ? (
+                  condoData.nearestStations.map((station, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
+                    >
+                      <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
+                        <span>{station.stationType}</span>
+                        ,&nbsp;
+                        <span>{station.stationName}</span>
+                        ,&nbsp;
+                        <span>
+                          {station.distance} {station.distanceUnit}
+                        </span>
+                      </p>
+                      <span className="flex gap-3">
+                        <FaRegEdit
+                          className="cursor-pointer text-black"
+                          size={18}
+                          onClick={() =>
+                            handleOpenPopup("nearestStations", index)
+                          }
+                          title="Edit station"
+                        />
+                        <RiDeleteBin6Line
+                          className="cursor-pointer text-red-500"
+                          size={18}
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to remove this station?"
+                              )
+                            ) {
+                              const updated = condoData.nearestStations.filter(
+                                (_, i) => i !== index
+                              );
+                              setCondoData((prev) => ({
+                                ...prev,
+                                nearestStations: updated,
+                              }));
+                              toast.success("Station removed.");
+                            }
+                          }}
+                          title="Delete station"
+                        />
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500 text-sm italic">
+                    No stations added yet.
+                  </p>
+                )}
               </div>
             </div>
 
             <div className="relative mb-6 border border-gray-300 rounded-[20px] w-full max-w-[628px] min-h-[160px] p-4 sm:p-5 mx-auto">
-              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4">
+              <h2 className="absolute top-0 left-0 w-full py-4 border-b border-gray-300 rounded-t-[20px] text-lg font-semibold text-gray-800 flex items-center justify-between px-4 bg-white">
                 <div className="flex flex-wrap items-center text-gray-800 text-[16px] sm:text-[18px]">
                   Nearest landmark
                   <span className="text-gray-500 text-sm ml-1">
@@ -837,34 +954,59 @@ const CondoSummary = () => {
               </h2>
 
               <div className="pt-20 space-y-3">
-                {[
-                  {
-                    type: "Museums",
-                    name: "Landmark name",
-                    distance: "2 mile",
-                  },
-                  { type: "Mosque", name: "Landmark name", distance: "2 mile" },
-                  { type: "Temple", name: "Landmark name", distance: "2 mile" },
-                ].map((landmark, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
-                  >
-                    <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
-                      {landmark.type}, {landmark.name}, {landmark.distance}
-                    </p>
-                    <span className="flex gap-3">
-                      <FaRegEdit
-                        className="cursor-pointer text-black"
-                        size={18}
-                      />
-                      <RiDeleteBin6Line
-                        className="cursor-pointer text-red-500"
-                        size={18}
-                      />
-                    </span>
-                  </div>
-                ))}
+                {condoData.nearestLandmark?.length > 0 ? (
+                  condoData.nearestLandmark.map((landmark, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
+                    >
+                      <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
+                        <span>{landmark.landmarkType}</span>
+                        ,&nbsp;
+                        <span>{landmark.landmarkName}</span>
+                        ,&nbsp;
+                        <span>
+                          {landmark.distance} {landmark.distanceUnit}
+                        </span>
+                      </p>
+                      <span className="flex gap-3">
+                        <FaRegEdit
+                          className="cursor-pointer text-black"
+                          size={18}
+                          onClick={() =>
+                            handleOpenPopup("nearestLandmark", index)
+                          }
+                          title="Edit landmark"
+                        />
+                        <RiDeleteBin6Line
+                          className="cursor-pointer text-red-500"
+                          size={18}
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to remove this landmark?"
+                              )
+                            ) {
+                              const updated = condoData.nearestLandmark.filter(
+                                (_, i) => i !== index
+                              );
+                              setCondoData((prev) => ({
+                                ...prev,
+                                nearestLandmark: updated,
+                              }));
+                              toast.success("Landmark removed.");
+                            }
+                          }}
+                          title="Delete landmark"
+                        />
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500 text-sm italic">
+                    No landmarks added yet.
+                  </p>
+                )}
               </div>
             </div>
 
@@ -888,42 +1030,70 @@ const CondoSummary = () => {
               </h2>
 
               <div className="pt-20 space-y-3">
-                {[
-                  { type: "Internet", name: "Utilities company name" },
-                  { type: "Cable", name: "Utilities company name" },
-                  { type: "Internet", name: "Utilities company name" },
-                ].map((utility, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
-                  >
-                    <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
-                      {utility.type} - {utility.name}
-                    </p>
-                    <span className="flex gap-3">
-                      <FaRegEdit
-                        className="cursor-pointer text-black"
-                        size={18}
-                      />
-                      <RiDeleteBin6Line
-                        className="cursor-pointer text-red-500"
-                        size={18}
-                      />
-                    </span>
-                  </div>
-                ))}
+                {condoData.utilitiesProvider?.length > 0 ? (
+                  condoData.utilitiesProvider.map((utility, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-2 gap-2"
+                    >
+                      <p className="text-gray-800 text-[14px] sm:text-[15px] font-medium break-words">
+                        {utility.type} - {utility.name}
+                      </p>
+                      <span className="flex gap-3">
+                        <FaRegEdit
+                          className="cursor-pointer text-black"
+                          size={18}
+                          onClick={() =>
+                            handleOpenPopup("utilitiesProvider", index)
+                          }
+                          title="Edit utility"
+                        />
+                        <RiDeleteBin6Line
+                          className="cursor-pointer text-red-500"
+                          size={18}
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to remove this utility?"
+                              )
+                            ) {
+                              const updated =
+                                condoData.utilitiesProvider.filter(
+                                  (_, i) => i !== index
+                                );
+                              setCondoData((prev) => ({
+                                ...prev,
+                                utilitiesProvider: updated,
+                              }));
+                              toast.success("Utility removed.");
+                            }
+                          }}
+                          title="Delete utility"
+                        />
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500 text-sm italic">
+                    No utilities added yet.
+                  </p>
+                )}
               </div>
             </div>
           </div>
         </div>
+
         <div className="border border-gray-300 rounded-[14px] mb-10">
-          <h2 className="pt-6 pl-5 text-gray-700 pb-3 font-semibold">
+          <h2 className="pt-6 pl-5 text-gray-800 pb-4 text-[18px] font-semibold">
             Property Gallery
-            <span className="text-gray-500">(It's not unit photo)*</span>
+            <span className="text-gray-500">
+              {" "}
+              <span className="text-[16px]"> (It's not unit photo)*</span>
+            </span>
           </h2>
           <div className="p-5 border-t border-gray-300 space-y-6 flex flex-wrap gap-8">
             <div>
-              <h3 className="font-medium text-gray-700 mb-3">
+              <h3 className="font-medium text-[17px] text-gray-700 mb-3">
                 Featured Photos <span className="text-orange-500">*</span>
               </h3>
 
@@ -935,8 +1105,10 @@ const CondoSummary = () => {
                   }
                 >
                   <Upload className="w-8 h-8 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
-                  Upload cover photo
-                  <span className="text-[12px] text-gray-500">
+                  <span className="text-[16px] text-gray-800 font-medium">
+                    Upload cover photo
+                  </span>
+                  <span className="text-[12px] text-gray-500 font-semibold">
                     (Jpg, png only)
                   </span>
                   <input
@@ -980,8 +1152,9 @@ const CondoSummary = () => {
               </div>
             </div>
             <div>
-              <h3 className="font-medium text-gray-700 mb-3">
-                More Photos <span className="text-gray-500">(optional)</span>
+              <h3 className="font-medium text-[17px] text-gray-700 mb-3">
+                More Photos{" "}
+                <span className="text-[16px] text-gray-500">(optional)</span>
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-2 gap-y-3">
                 {Array.from({ length: 8 }).map((_, i) => (
@@ -1011,13 +1184,18 @@ const CondoSummary = () => {
             </div>
           </div>
         </div>
+
         <div className="border border-gray-300 rounded-[14px] overflow-hidden">
           <div
             className="w-full flex justify-between items-center bg-gray-100 px-5 py-4 cursor-pointer"
             onClick={() => setShowVideosSection(!showVideosSection)}
           >
-            <h3 className="font-medium text-gray-700 ">
-              Videos <span className="text-gray-500">(optional)</span>
+            <h3 className="font-medium text-[17px] text-gray-800">
+              Videos{" "}
+              <span className="text-gray-500">
+                {" "}
+                <span className="text-[16px]">(optional) </span>{" "}
+              </span>
             </h3>
             <span className="border rounded-full">
               {showVideosSection ? (
@@ -1140,6 +1318,7 @@ const CondoSummary = () => {
             )}
           </div>
         </div>
+
         <PropertyAddressPopup
           isOpen={openPopup === "propertyAddress"}
           onClose={handleClosePopup}
@@ -1164,14 +1343,16 @@ const CondoSummary = () => {
           initialData={condoData.rentReminder}
           onSaveData={(data) => handleSaveSectionData("rentReminder", data)}
         />
-        <ApplicationPopup
-          isOpen={openPopup === "applicationAgreement"}
-          onClose={handleClosePopup}
-          initialData={condoData.applicationAgreement}
-          onSaveData={(data) =>
-            handleSaveSectionData("applicationAgreement", data)
-          }
-        />
+        {openPopup === "applicationAgreement" && (
+          <ApplicationAgreementPopup
+            isOpen={openPopup === "applicationAgreement"}
+            onClose={handleClosePopup}
+            initialData={condoData.applicationAgreement} // pass current data here
+            onSaveData={(data) =>
+              handleSaveSectionData("applicationAgreement", data)
+            }
+          />
+        )}
         <AboutPropertyPopup
           isOpen={openPopup === "aboutProperty"}
           onClose={handleClosePopup}
@@ -1214,7 +1395,7 @@ const CondoSummary = () => {
           isOpen={openPopup === "nearestStations"}
           onClose={handleClosePopup}
           initialData={
-            condoData.nearestStations.length > 0
+            condoData.nearestStations && condoData.nearestStations.length > 0
               ? condoData.nearestStations[0]
               : null
           }
@@ -1226,7 +1407,7 @@ const CondoSummary = () => {
           isOpen={openPopup === "nearestLandmark"}
           onClose={handleClosePopup}
           initialData={
-            condoData.nearestLandmark.length > 0
+            condoData.nearestLandmark?.length > 0
               ? condoData.nearestLandmark[0]
               : null
           }
@@ -1234,11 +1415,12 @@ const CondoSummary = () => {
             handleSaveSectionData("nearestLandmark", [data])
           }
         />
+
         <UtilitiesProviderPopup
           isOpen={openPopup === "utilitiesProvider"}
           onClose={handleClosePopup}
           initialData={
-            condoData.utilitiesProvider.length > 0
+            condoData.utilitiesProvider?.length > 0
               ? condoData.utilitiesProvider[0]
               : null
           }

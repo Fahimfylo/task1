@@ -1,13 +1,14 @@
-import React, { useState } from "react"; // Corrected syntax here
-import { Plus, Upload } from "lucide-react"; // Upload from lucide-react for photos
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io"; // Up and Down arrows for video toggle
+import React, { useState } from "react";
+import { Plus, Upload } from "lucide-react"; 
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+
 import PropertyAddressPopup from "../components/Manageproperty/popups/PropertyAddressPopup";
 import LeasingInfoPopup from "../components/Manageproperty/popups/LeasingInfoPopup";
 import ChargesPopup from "../components/Manageproperty/popups/ChargesPopup";
 import RentPopup from "../components/Manageproperty/popups/RentPopup";
-import ApplicationPopup from "../components/Manageproperty/popups/ApplicationPopup"; // Assuming this is correct
+import ApplicationPopup from "../components/Manageproperty/popups/ApplicationPopup";
 import AboutPropertyPopup from "../components/Manageproperty/popups/AboutPropertyPopup";
-import CommunityPopup from "../components/Manageproperty/popups/CommunitiesPopup"; // Renamed to CommunitiesPopup based on your imports
+import CommunityPopup from "../components/Manageproperty/popups/CommunitiesPopup";
 import PetFeesPopup from "../components/Manageproperty/popups/PetFeesPopup";
 import ParkingPopup from "../components/Manageproperty/popups/ParkingPopup";
 import EducationPopup from "../components/Manageproperty/popups/EducationPopup";
@@ -15,7 +16,37 @@ import NearestStationPopup from "../components/Manageproperty/popups/NearestStat
 import NearestLandmarkPopup from "../components/Manageproperty/popups/NearestLandmarkPopup";
 import UtilitiesProviderPopup from "../components/Manageproperty/popups/UtilitiesProviderPopup";
 
+const VideoUploadCard = ({ onUpload, fileName }) => (
+  <div className="flex flex-col items-center w-[127px] justify-start text-gray-500 text-sm cursor-pointer gap-1">
+    <p className="font-medium text-gray-800 text-[15px] mb-2 ml-10 w-[185px] text-center">
+      Property Video <span className="text-gray-500 ml-1">(optional)</span>
+    </p>
+
+    <div
+      className="flex flex-col w-[127px] h-[110px] items-center justify-center p-4 border-2 border-dashed border-blue-500 rounded-xl"
+      onClick={() => document.getElementById("propertyVideoUpload").click()}
+    >
+      <Upload className="w-7 h-7 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
+      <p className="text-[13px] font-semibold text-gray-800 pb-1 pt-1">
+        Upload Video
+      </p>
+      <p className="text-[11px] font-medium">(MP4, MOV only)</p>
+      <input
+        type="file"
+        id="propertyVideoUpload"
+        className="hidden"
+        accept=".mp4,.mov"
+        onChange={onUpload}
+      />
+      {fileName && (
+        <span className="text-blue-600 text-xs mt-1 truncate">{fileName}</span>
+      )}
+    </div>
+  </div>
+);
+
 const CondoInformationForm = () => {
+
   const [showAddressPopup, setShowAddressPopup] = useState(false);
   const [showLeasingPopup, setShowLeasingPopup] = useState(false);
   const [showChargesPopup, setChargesPopup] = useState(false);
@@ -30,12 +61,14 @@ const CondoInformationForm = () => {
   const [showNearestLandmarkPopup, setNearestLandmarkPopup] = useState(false);
   const [showUtilitiesProviderPopup, setUtilitiesProviderPopup] =
     useState(false);
+
   const [coverPhoto, setCoverPhoto] = useState(null);
   const [morePhotos, setMorePhotos] = useState(Array(12).fill(null));
   const [showVideosSection, setShowVideosSection] = useState(false);
   const [propertyVideoFile, setPropertyVideoFile] = useState(null);
+
   const formFields = [
-    { label: "Property address", note: "(Required)", key: "property_address" },
+    { label: "Property address", note: "(Required)" },
     { label: "Pet fees", note: "(Optional, add fees if you allow pet)" },
     { label: "Leasing info", note: "(Required)" },
     { label: "Parking", note: "(Optional)" },
@@ -57,54 +90,73 @@ const CondoInformationForm = () => {
   ];
 
   const handleAddClick = (label) => {
-    if (label === "Property address") {
-      setShowAddressPopup(true);
-    } else if (label === "Leasing info") {
-      setShowLeasingPopup(true);
-    } else if (label === "Charges") {
-      setChargesPopup(true);
-    } else if (label === "Rent frequency & payment reminder") {
-      setRentPopup(true);
-    } else if (label === "Application agreement") {
-      setApplicationPopup(true);
-    } else if (label === "About the property") {
-      setAboutPropertyPopup(true);
-    } else if (label === "Community's amenity/features") {
-      setCommunityPopup(true);
-    } else if (label === "Pet fees") {
-      setPetFeesPopup(true);
-    } else if (label === "Parking") {
-      setParkingPopup(true);
-    } else if (label === "Nearest educational institution") {
-      setEducationPopup(true);
-    } else if (label === "Nearest Stations") {
-      setNearestStationPopup(true);
-    } else if (label === "Nearest landmark") {
-      setNearestLandmarkPopup(true);
-    } else if (label === "Utilities provider") {
-      setUtilitiesProviderPopup(true);
+    switch (label) {
+      case "Property address":
+        setShowAddressPopup(true);
+        break;
+      case "Leasing info":
+        setShowLeasingPopup(true);
+        break;
+      case "Charges":
+        setChargesPopup(true);
+        break;
+      case "Rent frequency & payment reminder":
+        setRentPopup(true);
+        break;
+      case "Application agreement":
+        setApplicationPopup(true);
+        break;
+      case "About the property":
+        setAboutPropertyPopup(true);
+        break;
+      case "Community's amenity/features":
+        setCommunityPopup(true);
+        break;
+      case "Pet fees":
+        setPetFeesPopup(true);
+        break;
+      case "Parking":
+        setParkingPopup(true);
+        break;
+      case "Nearest educational institution":
+        setEducationPopup(true);
+        break;
+      case "Nearest Stations":
+        setNearestStationPopup(true);
+        break;
+      case "Nearest landmark":
+        setNearestLandmarkPopup(true);
+        break;
+      case "Utilities provider":
+        setUtilitiesProviderPopup(true);
+        break;
+      default:
+        break;
     }
   };
+
   const handleCoverPhotoChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      setCoverPhoto(e.target.files[0].name); 
+      setCoverPhoto(e.target.files[0].name);
       console.log("Cover Photo:", e.target.files[0]);
     }
   };
+
   const handleMorePhotoChange = (index, e) => {
     if (e.target.files && e.target.files[0]) {
       const updatedPhotos = [...morePhotos];
-      updatedPhotos[index] = e.target.files[0].name; 
+      updatedPhotos[index] = e.target.files[0].name;
       setMorePhotos(updatedPhotos);
       console.log(`More Photo ${index + 1}:`, e.target.files[0]);
     }
   };
-  const handleVideoFileChange = (setter, event) => {
-    if (event.target.files && event.target.files[0]) {
-      setter(event.target.files[0].name); 
-      console.log("Selected video file:", event.target.files[0].name);
+
+  const handleVideoFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setPropertyVideoFile(e.target.files[0].name);
+      console.log("Selected video file:", e.target.files[0].name);
     } else {
-      setter(null); 
+      setPropertyVideoFile(null);
     }
   };
 
@@ -113,27 +165,29 @@ const CondoInformationForm = () => {
       <h1 className="py-[10px] text-[19px] font-semibold">
         Condominiums information
       </h1>
+
+      {/* Form Fields Section */}
       <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
-        {formFields.map((field, idx) => (
+        {formFields.map(({ label, note }, idx) => (
           <div
             key={idx}
             className="w-full border border-gray-300 rounded-[20px] flex items-center justify-between"
           >
             <label className="block h-[66px] px-5 py-3 lg:py-5 md:py-4 sm:py-5 font-medium text-gray-700">
-              {field.label}{" "}
+              {label}{" "}
               <span
                 className={`text-sm ${
-                  field.note.includes("Required")
+                  note.includes("Required")
                     ? "text-orange-500"
                     : "text-gray-500"
                 }`}
               >
-                {field.note}
+                {note}
               </span>
             </label>
 
             <button
-              onClick={() => handleAddClick(field.label)}
+              onClick={() => handleAddClick(label)}
               className="text-blue-600 flex items-center px-5 text-sm font-medium"
             >
               <Plus className="w-5 h-5 mr-1 text-blue-500" />
@@ -142,18 +196,24 @@ const CondoInformationForm = () => {
           </div>
         ))}
       </div>
-      <div className="border mb-10 border-gray-300 rounded-[14px]">
-        <h2 className="pt-6 pl-5 text-gray-700 pb-3 font-semibold">
+
+      {/* Property Gallery */}
+      <div className="border border-gray-300 rounded-[14px] mb-10">
+        <h2 className="pt-6 pl-6 text-gray-800 pb-4 text-[18px] font-semibold">
           Property Gallery
-          <span className="text-gray-500">(It's not unit photo)*</span>
+          <span className="text-gray-500">
+            {" "}
+            <span className="text-[16px]">(It's not unit photo)*</span>
+          </span>
         </h2>
         <div className="p-5 border-t border-gray-300 space-y-6 flex flex-wrap gap-8">
+          {/* Featured Photos */}
           <div>
-            <h3 className="font-medium text-gray-700 mb-3">
+            <h3 className="font-medium text-[17px] text-gray-700 mb-3">
               Featured Photos <span className="text-orange-500">*</span>
             </h3>
-
             <div className="flex flex-col md:flex-row flex-wrap">
+              {/* Cover Photo Upload */}
               <div
                 className="w-full md:w-[217px] h-[165px] border-2 border-dashed border-blue-500 rounded-xl flex flex-col items-center justify-center text-gray-500 text-sm cursor-pointer gap-2 bg-gray-50"
                 onClick={() =>
@@ -161,8 +221,10 @@ const CondoInformationForm = () => {
                 }
               >
                 <Upload className="w-8 h-8 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
-                Upload cover photo
-                <span className="text-[12px] text-gray-500">
+                <span className="text-[16px] text-gray-800 font-medium">
+                  Upload cover photo
+                </span>
+                <span className="text-[12px] text-gray-500 font-semibold">
                   (Jpg, png only)
                 </span>
                 <input
@@ -173,16 +235,18 @@ const CondoInformationForm = () => {
                   onChange={handleCoverPhotoChange}
                 />
                 {coverPhoto && (
-                  <span className="text-xs text-blue-600 mt-1">
+                  <span className="text-xs text-blue-600 mt-1 truncate">
                     {coverPhoto}
                   </span>
                 )}
               </div>
-              <div className="grid grid-cols-2 gap-y-3 gap-x-2 lg:gap-x-2 md:gap-x-4 sm:gap-x-4 mt-4 md:mt-0 md:ml-4">
+
+              {/* 4 More Featured Photos */}
+              <div className="grid grid-cols-2 gap-y-3 gap-x-2 mt-4 md:mt-0 md:ml-4">
                 {Array.from({ length: 4 }).map((_, i) => (
                   <div
                     key={i}
-                    className="w-[101px] h-[75px] border-2 border-dashed border-blue-500 rounded-xl flex items-center justify-center cursor-pointer bg-gray-50 relative"
+                    className="w-[101px] h-[75px]  border-2 border-dashed border-blue-500 rounded-xl flex items-center justify-center cursor-pointer bg-gray-50 relative"
                     onClick={() =>
                       document.getElementById(`featured-${i}`).click()
                     }
@@ -205,9 +269,11 @@ const CondoInformationForm = () => {
               </div>
             </div>
           </div>
+
           <div>
-            <h3 className="font-medium text-gray-700 mb-3">
-              More Photos <span className="text-gray-500">(optional)</span>
+            <h3 className="font-medium text-[17px] text-gray-700 mb-3">
+              More Photos{" "}
+              <span className="text-[16px] text-gray-500">(optional)</span>
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-2 gap-y-3">
               {Array.from({ length: 8 }).map((_, i) => (
@@ -242,8 +308,11 @@ const CondoInformationForm = () => {
           className="w-full flex justify-between items-center bg-gray-100 px-5 py-4 cursor-pointer"
           onClick={() => setShowVideosSection(!showVideosSection)}
         >
-          <h3 className="font-medium text-gray-700 ">
-            Videos <span className="text-gray-500">(optional)</span>
+          <h3 className="font-medium text-[17px] text-gray-800">
+            Videos{" "}
+            <span className="text-gray-500">
+              <span className="text-[16px]">(optional)</span>
+            </span>
           </h3>
           <span className="border rounded-full">
             {showVideosSection ? (
@@ -263,105 +332,13 @@ const CondoInformationForm = () => {
         >
           {showVideosSection && (
             <div className="grid w-[691px] grid-cols-1 sm:grid-cols-3 ml-6 mb-2">
-              <div className="flex flex-col items-center w-[127px] justify-start text-gray-500 text-sm cursor-pointer gap-1">
-                <p className="font-medium text-gray-800 text-[15px] mb-2 ml-10 w-[185px] text-center">
-                  Property Video
-                  <span className="text-gray-500 ml-1">(optional)</span>
-                </p>
-
-                <div
-                  className="flex flex-col w-[127px] h-[110px] items-center justify-center p-4 border-2 border-dashed border-blue-500 rounded-xl"
-                  onClick={() =>
-                    document.getElementById("propertyVideoUpload").click()
-                  }
-                >
-                  <Upload className="w-7 h-7 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
-                  <p className="text-[13px] font-semibold text-gray-800 pb-1 pt-1">
-                    Upload Video
-                  </p>
-                  <p className="text-[11px] font-medium">(MP4, MOV only)</p>
-                  <input
-                    type="file"
-                    id="propertyVideoUpload"
-                    className="hidden"
-                    accept=".mp4,.mov"
-                    onChange={(e) =>
-                      handleVideoFileChange(setPropertyVideoFile, e)
-                    }
-                  />
-                  {propertyVideoFile && (
-                    <span className="text-blue-600 text-xs mt-1">
-                      {propertyVideoFile}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="flex flex-col items-center w-[127px] justify-start text-gray-500 text-sm cursor-pointer gap-1">
-                <p className="font-medium text-gray-800 text-[15px] mb-2 ml-10 w-[185px] text-center">
-                  Property Video
-                  <span className="text-gray-500 ml-1">(optional)</span>
-                </p>
-
-                <div
-                  className="flex flex-col w-[127px] h-[110px] items-center justify-center p-4 border-2 border-dashed border-blue-500 rounded-xl"
-                  onClick={() =>
-                    document.getElementById("propertyVideoUpload").click()
-                  }
-                >
-                  <Upload className="w-7 h-7 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
-                  <p className="text-[13px] font-semibold text-gray-800 pb-1 pt-1">
-                    Upload Video
-                  </p>
-                  <p className="text-[11px] font-medium">(MP4, MOV only)</p>
-                  <input
-                    type="file"
-                    id="propertyVideoUpload"
-                    className="hidden"
-                    accept=".mp4,.mov"
-                    onChange={(e) =>
-                      handleVideoFileChange(setPropertyVideoFile, e)
-                    }
-                  />
-                  {propertyVideoFile && (
-                    <span className="text-blue-600 text-xs mt-1">
-                      {propertyVideoFile}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="flex flex-col items-center w-[127px] justify-start text-gray-500 text-sm cursor-pointer gap-1">
-                <p className="font-medium text-gray-800 text-[15px] mb-2 ml-10 w-[185px] text-center">
-                  Property Video
-                  <span className="text-gray-500 ml-1">(optional)</span>
-                </p>
-
-                <div
-                  className="flex flex-col w-[127px] h-[110px] items-center justify-center p-4 border-2 border-dashed border-blue-500 rounded-xl"
-                  onClick={() =>
-                    document.getElementById("propertyVideoUpload").click()
-                  }
-                >
-                  <Upload className="w-7 h-7 text-black border-2 border-dashed border-blue-400 rounded-md p-1" />
-                  <p className="text-[13px] font-semibold text-gray-800 pb-1 pt-1">
-                    Upload Video
-                  </p>
-                  <p className="text-[11px] font-medium">(MP4, MOV only)</p>
-                  <input
-                    type="file"
-                    id="propertyVideoUpload"
-                    className="hidden"
-                    accept=".mp4,.mov"
-                    onChange={(e) =>
-                      handleVideoFileChange(setPropertyVideoFile, e)
-                    }
-                  />
-                  {propertyVideoFile && (
-                    <span className="text-blue-600 text-xs mt-1">
-                      {propertyVideoFile}
-                    </span>
-                  )}
-                </div>
-              </div>
+              {[0, 1, 2].map((_, i) => (
+                <VideoUploadCard
+                  key={i}
+                  fileName={propertyVideoFile}
+                  onUpload={handleVideoFileChange}
+                />
+              ))}
             </div>
           )}
         </div>
@@ -374,6 +351,7 @@ const CondoInformationForm = () => {
       <LeasingInfoPopup
         isOpen={showLeasingPopup}
         onClose={() => setShowLeasingPopup(false)}
+        onSaveData={() => setShowLeasingPopup(false)} 
       />
       <ChargesPopup
         isOpen={showChargesPopup}
@@ -388,6 +366,7 @@ const CondoInformationForm = () => {
       <ApplicationPopup
         isOpen={showApplicationPopup}
         onClose={() => setApplicationPopup(false)}
+        onSaveData={() => setShowLeasingPopup(false)}
       />
       <AboutPropertyPopup
         isOpen={showAboutPropertyPopup}

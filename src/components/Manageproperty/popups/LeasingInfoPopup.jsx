@@ -1,17 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReusablePopup from "../../../components/common/ReusablePopup";
-import PhoneInputWithCountry from "../../../components/common/PhoneInputWithCountry"; // Adjust path if needed
+import PhoneInputWithCountry from "../../../components/common/PhoneInputWithCountry";
 import toast from "react-hot-toast";
 
-const LeasingInfoPopup = ({ isOpen, onClose }) => {
+const LeasingInfoPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
   const [phone, setPhone] = useState("");
   const [managerName, setManagerName] = useState("");
   const [managerEmail, setManagerEmail] = useState("");
   const [sameAddress, setSameAddress] = useState(false);
 
+  useEffect(() => {
+    if (initialData) {
+      setPhone(initialData.phone || "");
+      setManagerName(initialData.managerName || "");
+      setManagerEmail(initialData.managerEmail || "");
+      setSameAddress(initialData.sameAddress || false);
+    }
+  }, [initialData, isOpen]);
+
   const handleSave = () => {
-    toast.success("Saved successfully!", {
-    });
+    const updatedData = {
+      phone,
+      managerName,
+      managerEmail,
+      sameAddress,
+    };
+    onSaveData(updatedData); 
+    toast.success("Saved successfully!");
     onClose();
   };
 

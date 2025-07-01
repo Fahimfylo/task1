@@ -48,8 +48,6 @@ const ChosenPlan = () => {
         <h1 className="text-xl font-semibold text-gray-900 mb-6 text-center sm:text-left">
           Choose a plan for after 30-days free trial
         </h1>
-
-        {/* Billing Cycle Toggle */}
         <div className="flex bg-gray-100 rounded-full p-1 mb-8 w-fit mx-auto sm:mx-0">
           {["Monthly", "Annually"].map((cycle) => (
             <button
@@ -65,8 +63,6 @@ const ChosenPlan = () => {
             </button>
           ))}
         </div>
-
-        {/* Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {Object.keys(plans).map((planName) => (
             <div
@@ -108,8 +104,6 @@ const ChosenPlan = () => {
             </div>
           ))}
         </div>
-
-        {/* Payment Option */}
         <div className="mt-12">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
             <h2 className="text-xl font-semibold text-gray-900">
@@ -157,7 +151,6 @@ const ChosenPlan = () => {
               </div>
             ))}
           </div>
-
           <AddNewCardPopup
             isOpen={isAddCardPopupOpen}
             onClose={() => setIsAddCardPopupOpen(false)}

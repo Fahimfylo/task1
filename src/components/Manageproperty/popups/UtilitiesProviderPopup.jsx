@@ -1,7 +1,6 @@
-import { useState } from "react";
-import ReusablePopup from "../../../components/common/ReusablePopup"; // Common path from your previous code
-
-import { SlArrowDown } from "react-icons/sl"; // Import SlArrowDown icon
+import { useState, useEffect } from "react";
+import ReusablePopup from "../../../components/common/ReusablePopup";
+import { SlArrowDown } from "react-icons/sl";
 import toast from "react-hot-toast";
 
 const UtilitiesProviderPopup = ({
@@ -10,28 +9,25 @@ const UtilitiesProviderPopup = ({
   initialData,
   onSaveData,
 }) => {
-  const [utilityType, setUtilityType] = useState(
-    initialData?.utilityType || ""
-  ); 
-  const [providerCompanyName, setProviderCompanyName] = useState(
-    initialData?.providerCompanyName || ""
-  );
+  const [type, setType] = useState(initialData?.type || "");
+  const [name, setName] = useState(initialData?.name || "");
+  useEffect(() => {
+    setType(initialData?.type || "");
+    setName(initialData?.name || "");
+  }, [initialData]);
 
   const handleSave = () => {
-    onSaveData({
-      utilityType,
-      providerCompanyName,
-    });
-    toast.success("Saved successfully!", {});
-    onClose(); 
+    onSaveData({ type, name });
+    toast.success("Saved successfully!");
+    onClose();
   };
 
   return (
     <ReusablePopup
       isOpen={isOpen}
-      title="Utilities provider" 
+      title="Utilities provider"
       onClose={onClose}
-      onSave={handleSave} 
+      onSave={handleSave}
     >
       <div className="flex flex-col w-[780px] px-6 py-6 space-y-4">
         <div className="grid grid-cols-2 gap-6">
@@ -46,10 +42,10 @@ const UtilitiesProviderPopup = ({
               <select
                 id="utilityType"
                 className="border text-[15px] font-medium text-gray-600 border-gray-300 rounded-lg px-4 h-[48px] w-full appearance-none bg-white pr-8 focus:ring-blue-500 focus:border-blue-500"
-                value={utilityType}
-                onChange={(e) => setUtilityType(e.target.value)}
+                value={type}
+                onChange={(e) => setType(e.target.value)}
               >
-                <option value="">Select</option> {/* Placeholder "Select" */}
+                <option value="">Select</option>
                 <option value="Internet">Internet</option>
                 <option value="Cable">Cable</option>
                 <option value="Electricity">Electricity</option>
@@ -64,18 +60,18 @@ const UtilitiesProviderPopup = ({
           </div>
           <div className="flex flex-col">
             <label
-              htmlFor="providerCompanyName"
+              htmlFor="providerName"
               className="font-medium text-gray-800 mb-2"
             >
               Provider company name<span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              id="providerCompanyName"
-              placeholder="Enter name" 
+              id="providerName"
+              placeholder="Enter name"
               className="border text-[15px] font-medium border-gray-300 placeholder:text-gray-600 rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
-              value={providerCompanyName}
-              onChange={(e) => setProviderCompanyName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
         </div>

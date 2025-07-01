@@ -1,60 +1,60 @@
 import { useState } from "react";
-import ReusablePopup from "../../../components/common/ReusablePopup"; 
-import { SlArrowDown } from "react-icons/sl"; 
+import ReusablePopup from "../../../components/common/ReusablePopup";
+import { SlArrowDown } from "react-icons/sl";
 import toast from "react-hot-toast";
 
 const NearestLandmarkPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
-  const [stationType, setStationType] = useState(
-    initialData?.stationType || ""
-  ); 
+  const [landmarkType, setLandmarkType] = useState(
+    initialData?.landmarkType || ""
+  );
   const [distance, setDistance] = useState(initialData?.distance || "");
   const [distanceUnit, setDistanceUnit] = useState(
     initialData?.distanceUnit || "Mile"
-  ); 
-  const [stationName, setStationName] = useState(
-    initialData?.stationName || ""
+  );
+  const [landmarkName, setLandmarkName] = useState(
+    initialData?.landmarkName || ""
   );
 
   const handleSave = () => {
-    toast.success("Saved successfully!", {});
+    toast.success("Saved successfully!");
     onSaveData({
-      stationType,
+      landmarkType,
+      landmarkName,
       distance,
       distanceUnit,
-      stationName,
     });
-    onClose(); 
+    onClose();
   };
 
   return (
     <ReusablePopup
       isOpen={isOpen}
-      title="Add landmark" 
+      title="Add landmark"
       onClose={onClose}
-      onSave={handleSave} 
+      onSave={handleSave}
     >
       <div className="flex flex-col w-[780px] px-6 py-6 space-y-4">
         <div className="grid grid-cols-2 gap-6">
           <div className="flex flex-col">
             <label
-              htmlFor="stationType"
+              htmlFor="landmarkType"
               className="font-medium text-gray-800 mb-2"
             >
-              Nearest station type<span className="text-red-500">*</span>
+              Landmark type<span className="text-red-500">*</span>
             </label>
             <div className="relative w-full">
               <select
-                id="stationType"
+                id="landmarkType"
                 className="border text-[15px] font-medium text-gray-600 border-gray-300 rounded-lg px-4 h-[48px] w-full appearance-none bg-white pr-8 focus:ring-blue-500 focus:border-blue-500"
-                value={stationType}
-                onChange={(e) => setStationType(e.target.value)}
+                value={landmarkType}
+                onChange={(e) => setLandmarkType(e.target.value)}
               >
                 <option value="">Select</option>
-                <option value="Bus">Bus</option>
-                <option value="Train">Train</option>
-                <option value="Metro">Metro</option>
-                <option value="Tram">Tram</option>
-                <option value="Airport">Airport</option>
+                <option value="Museum">Museum</option>
+                <option value="Mosque">Mosque</option>
+                <option value="Temple">Temple</option>
+                <option value="Park">Park</option>
+                <option value="Historical Site">Historical Site</option>
               </select>
               <SlArrowDown
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 pointer-events-none"
@@ -62,6 +62,7 @@ const NearestLandmarkPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
               />
             </div>
           </div>
+
           <div className="flex flex-col">
             <label
               htmlFor="distance"
@@ -73,7 +74,7 @@ const NearestLandmarkPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
               <input
                 type="number"
                 id="distance"
-                placeholder="1.5" 
+                placeholder="1.5"
                 className="px-4 text-[15px] placeholder:text-gray-600 font-medium text-gray-600 w-full flex-1 outline-none bg-transparent"
                 value={distance}
                 onChange={(e) => setDistance(e.target.value)}
@@ -96,20 +97,21 @@ const NearestLandmarkPopup = ({ isOpen, onClose, initialData, onSaveData }) => {
             </div>
           </div>
         </div>
+
         <div className="flex flex-col">
           <label
-            htmlFor="stationName"
+            htmlFor="landmarkName"
             className="font-medium text-gray-800 mb-2"
           >
-            Nearest station name<span className="text-red-500">*</span>
+            Landmark name<span className="text-red-500">*</span>
           </label>
           <input
             type="text"
-            id="stationName"
-            placeholder="Enter name" 
+            id="landmarkName"
+            placeholder="Enter name"
             className="border text-[15px] font-medium border-gray-300 placeholder:text-gray-600 rounded-lg px-4 h-[48px] w-full focus:ring-blue-500 focus:border-blue-500"
-            value={stationName}
-            onChange={(e) => setStationName(e.target.value)}
+            value={landmarkName}
+            onChange={(e) => setLandmarkName(e.target.value)}
           />
         </div>
       </div>

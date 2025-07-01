@@ -1,10 +1,26 @@
-import { useState } from "react";
-import ReusablePopup from "../../../components/common/ReusablePopup"; 
+import { useState, useEffect } from "react";
+import ReusablePopup from "../../../components/common/ReusablePopup";
 import toast from "react-hot-toast";
 
-const ApplicationAgreementPopup = ({ isOpen, onClose }) => {
+const ApplicationAgreementPopup = ({
+  isOpen,
+  onClose,
+  initialData,
+  onSaveData,
+}) => {
   const [agreementFile, setAgreementFile] = useState(null);
-  const [acceptImmigrantApplication, setAcceptImmigrantApplication] = useState(false);
+  const [acceptImmigrantApplication, setAcceptImmigrantApplication] =
+    useState(false);
+
+  useEffect(() => {
+    if (initialData) {
+      setAgreementFile(initialData.agreementFileName || null);
+      setAcceptImmigrantApplication(!!initialData.acceptImmigrantApplication);
+    } else {
+      setAgreementFile(null);
+      setAcceptImmigrantApplication(false);
+    }
+  }, [initialData]);
 
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -12,39 +28,50 @@ const ApplicationAgreementPopup = ({ isOpen, onClose }) => {
       console.log("Selected file:", event.target.files[0].name);
     }
   };
+
   const handleSave = () => {
-    toast.success("Saved successfully!", {
+    onSaveData({
+      agreementFileName: agreementFile?.name || agreementFile, 
+      acceptImmigrantApplication,
     });
-    onClose(); 
+    toast.success("Saved successfully!");
+    onClose();
   };
 
   return (
     <ReusablePopup
       isOpen={isOpen}
-      title="Application agreement(optional)" 
+      title="Application agreement (optional)"
       onClose={onClose}
-      onSave={handleSave} 
+      onSave={handleSave}
     >
-      <div className="flex flex-col justify-center w-[780px] h-[180px] px-6 py-6 space-y-4 overflow-hidden"> 
+      <div className="flex flex-col justify-center w-[780px] h-[180px] px-6 py-6 space-y-4 overflow-hidden">
         <div className="flex flex-col">
-          <label htmlFor="uploadAgreement" className="font-medium text-gray-800 text-[15px] mb-4">
+          <label
+            htmlFor="uploadAgreement"
+            className="font-medium text-gray-800 text-[15px] mb-4"
+          >
             Upload agreement
           </label>
           <div
-            className="relative bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-6 cursor-pointer hover:border-blue-500 transition-colors duration-200 h-[48px] w-[732px]" // Adjusted w-[748px] to w-[732px] for proper fit within px-6 parent
-            onClick={() => document.getElementById('fileUpload').click()} 
+            className="relative bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-6 cursor-pointer hover:border-blue-500 transition-colors duration-200 h-[48px] w-[732px]"
+            onClick={() => document.getElementById("fileUpload").click()}
           >
             <input
               type="file"
               id="fileUpload"
-              className="hidden" 
+              className="hidden"
               onChange={handleFileChange}
-              accept=".pdf" 
+              accept=".pdf"
             />
             <div className="flex flex-row gap-2 items-center">
-              <img src="../../../../public/images/upload-02.png" alt="" /> 
-              <p className="text-gray-600 font-medium text-sm"> 
-                {agreementFile ? agreementFile.name : "(Pdf only)"}
+              <img src="../../../../public/images/upload-02.png" alt="" />
+              <p className="text-gray-600 font-medium text-sm">
+                {agreementFile
+                  ? typeof agreementFile === "string"
+                    ? agreementFile
+                    : agreementFile.name
+                  : "(Pdf only)"}
               </p>
             </div>
           </div>
